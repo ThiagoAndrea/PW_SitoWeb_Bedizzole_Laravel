@@ -15,7 +15,7 @@ class Allenatore extends Model
    protected $fillable = ['nome', 'cognome', 'data_di_nascita', 'foto'];
 
    public function squadre(){
-    return $this->belongsToMany(Squadra::class, 'AllenatoreSquadre', 'id_squadra', 'id_allenatore');
+    return $this->belongsToMany(Squadra::class, 'AllenatoreSquadre', 'id_allenatore', 'id_squadra');
    }
 
 

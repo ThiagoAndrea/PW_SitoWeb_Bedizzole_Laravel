@@ -18,5 +18,4 @@ class Utente extends Model
      return $this->hasOne(Carrello::class, 'id_carrello');
     }
  
- 
 }

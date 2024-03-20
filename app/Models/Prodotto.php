@@ -19,7 +19,7 @@ class Prodotto extends Model
    }
 
    public function ordini(){
-    return $this->hasMany(Ordine::class,'id_prodotto')
+    return $this->hasMany(Ordine::class,'id_prodotto');
    }
 
 
