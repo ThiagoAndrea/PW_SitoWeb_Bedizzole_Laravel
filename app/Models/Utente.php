@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Utente extends Model
 {
     use HasFactory;
+
+    protected $table = 'utenti';
+    protected $primaryKey = 'id_user';
+ 
+    protected $fillable = ['email', 'password', 'nome', 'cognome', 'id_carrello'];
+ 
+    public function carrello(){
+     return $this->hasOne(Carrello::class, 'id_carrello');
+    }
+ 
+ 
 }
