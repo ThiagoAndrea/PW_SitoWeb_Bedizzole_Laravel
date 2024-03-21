@@ -1,0 +1,298 @@
+
+.intestazione{
+    background-color: #8b2b12;
+    padding: 0;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    color: rgb(224, 222, 222);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.intestazione .row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.img-header {
+    width: 150px;
+}
+
+
+.navbar {
+    background-color:#8b2b12;
+}
+
+.nav-item {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#navbarSupportedContent  .navbar-nav .nav-link {
+    color: rgb(224, 222, 222);
+}
+
+.nav-link {
+    color: rgb(224,222,222);
+}
+
+#navbarSupportedContent  ul .active {
+    background-color: #661e0c;
+}
+
+.active-login {
+    background-color: #661e0c;
+}
+
+.login-link:hover {
+    text-decoration: none;
+    color: rgb(224, 222, 222);
+}
+
+.header-section {
+    border-bottom: 3px solid #8b2b12;
+    margin-bottom: 2em;
+    text-align: center;
+
+}
+
+.dropdown-menu {
+    background-color: #8b2b12;
+}
+
+.dropdown-menu li:hover{
+    background-color: #661e0c;
+}
+
+.dropdown-menu li a {
+    color: rgb(224, 222, 222);;
+}
+
+.descrizioneProdotto {
+
+    text-align: center;
+    margin-top: 10px;
+}
+
+.descrizioneProdotto h4 {
+    color: #5a5c5b;
+    margin-top: 8px;
+}
+
+.immagineProdotto img {
+    height: 300px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.cardGiocatore {
+    border: 1px solid #8b2b12;
+    border-radius: 10px;
+    position: relative;
+    padding: 2px;
+    margin-bottom: 20px;
+}
+
+.cardGiocatore img {
+    transition: opacity 0.5s;
+}
+
+.cardGiocatore:hover img {
+    opacity: 0;
+}
+
+.cardGiocatore .datiGiocatore{
+    transition: opacity 0.5s;
+}
+.cardGiocatore:hover .datiGiocatore {
+    opacity: 0;
+}
+
+.cardGiocatore .datiNascosti {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    color: black;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+    padding: 0;
+    margin-top: 40px;
+}
+
+
+.cardGiocatore:hover .datiNascosti {
+    opacity: 1;
+    
+}
+
+.datiGiocatore{
+    color: black;
+    text-align: center;
+}
+
+.datiNascosti li {
+    list-style-type: none;
+    margin: 5px 0;
+    display: flow-root;
+}
+
+.datiNascosti span {
+    color: grey;
+}
+
+footer{
+    background-color: #8b2b12;
+    color: rgb(224, 222, 222);
+    margin-top: 200px;
+}
+
+.footer-container {
+    margin-top: 200px;
+}
+.logo-footer {
+    width: 150px;
+}
+
+.copyrights {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-top: 2px solid rgb(224, 222, 222)
+}
+
+footer div h3 {
+    font-weight: bold;
+}
+.icon-footer {
+    font-size: 30px;
+}
+
+.btn-footer {
+    background-color: #661e0c;
+    border: 1px solid #661e0c;
+    color: rgb(224, 222, 222);
+}
+
+.btn-footer:hover {
+    border: 3px solid #44150a;
+    background-color: #44150a;
+    color: rgb(224, 222, 222);
+}
+
+.btn-facebook {
+    width: 100%;
+}
+
+#loginWindow {
+    border: #8b2b12 1px solid;
+}
+
+#breadcrumb-nav {
+    margin-top: 20px;
+}
+
+.breadcrumb-item > a {
+    text-decoration: none;
+    color: #8b2b12; 
+}
+
+.container-testo-notizia > p {
+    font-size: large;
+}
+
+.container-notizia {
+    margin-top: 50px;
+    border-bottom: #5a5c5b 1px solid;
+    padding-bottom: 50px;
+}
+
+.table-giocatori {
+    width: 100%;
+}
+
+.table-giocatori .header {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.table-giocatori .row:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-giocatori .row:hover {
+    background-color: #f2f2f2;
+}
+
+.table-giocatori .col {
+    padding: 8px;
+    text-align: center;
+}
+
+.table-giocatori a.btn {
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.table-giocatori a.btn-light:hover {
+    background-color: #ddd;
+}
+
+.container-gestioneRosa {
+    margin-top: 3%;
+    padding-bottom: 3%;
+    border-bottom: 2px solid #8b2b12;
+    
+}
+
+.titolo-squadra {
+    margin-bottom: 1%;
+    
+}
+.titolo-squadra h4 {
+    font-style: bold;
+}
+
+.container-footer {
+    margin-top: 3%;
+}
+
+.container-aggiungiGiocatore {
+    border: #661e0c 1px solid ;
+    padding: 2%;
+    margin: 2%;
+}
+
+.img-gestioneshop {
+    max-width: 130px;
+}
+
+
+.prodotto-shop {
+    border: 1px solid #8b2b12;
+    margin: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.riquadro-eliminazione {
+    background-color: #ebebeb;
+    padding: 2%;
+    margin: 2%;
+}
+
+
+.buttonlink {
+    text-decoration: none;
+    color: white;
+}
+
+

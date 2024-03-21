@@ -8,6 +8,6 @@ class FrontController extends Controller
 {
     public function getHome()
     {
-        return 'ciao';
+        return view('home');
     }
 }

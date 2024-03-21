@@ -14,11 +14,5 @@ use App\Http\Controllers\FrontController;
 |
 */
 
-Route::get('/', function () {
-    //return view('welcome');
-    return 'ciao';
-});
+Route::get('/', [FrontController::class, 'getHome']);
 
-
-
-Route::get('/prova', [FrontController::class, 'getHome']);
