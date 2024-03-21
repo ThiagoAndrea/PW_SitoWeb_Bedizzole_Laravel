@@ -3,7 +3,7 @@
 @section('titolo_head', 'Home - FC Bedizzole')
 
 @section('left_navbar')
-<li class="nav-item active"><a class="nav-link" aria-current="page" href="home.php">Home</a>
+<li class="nav-item active"><a class="nav-link" aria-current="page" href="{{route('home')}}">Home</a>
 </li>
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -25,6 +25,7 @@
 @endsection
 
 @section('right_navbar')
+
 <li class="nav-item"><a class="nav-link" href="carrello.php"><iconify-icon icon="bi:cart-fill"></iconify-icon> Carrello</a></li>;
                         <li class="nav-item dropdown d-flex me-2">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button"
@@ -33,5 +34,6 @@
                                 <li><a class="dropdown-item" href="gestioneRose.php">Gestione Rose</a></li>
                                 <li><a class="dropdown-item" href="gestioneShop.php">Gestione Shop</a></li>
                             </ul>
-                        </li>          
+                        </li>
+      
 @endsection

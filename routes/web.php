@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,10 @@ use App\Http\Controllers\FrontController;
 |
 */
 
-Route::get('/', [FrontController::class, 'getHome']);
+Route::get('/', [FrontController::class, 'getHome'])->name('home');
 
+Route::get('user/login', [AuthController::class, 'getLogin'])->name('user.login');
+Route::post('user/login', [AuthController::class, 'postLogin'])->name('user.login');
+
+Route::get('user/registration', [AuthController::class, 'getRegistration'])->name('user.registration');
+Route::post('user/registration', [AuthController::class, 'postRegistration'])->name('user.registration');
