@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DataLayer;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -11,10 +13,20 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin()
+    public function postLogin(Request $request)
     {
-       
+       session_start();
+       $dl = new DataLayer();
+       $nome_utente = $dl->utenteValido($request->input('email'), $request->input('password'));
+       if($nome_utente != null){
+        $_SESSION['logged']=true;
+        $_SESSION['loggedName'] = $nome_utente;
+    
+        return Redirect::to(route('home'));
+    } else
+        return 'error';
     }
+
 
     public function getRegistration()
     {
@@ -24,5 +36,12 @@ class AuthController extends Controller
     public function postRegistration()
     {
        
+    }
+
+    public function getLogout()
+    {
+        session_start();
+        session_destroy();
+        return Redirect::to(route('home'));
     }
 }

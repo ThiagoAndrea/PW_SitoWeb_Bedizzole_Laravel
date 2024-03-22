@@ -19,7 +19,9 @@ use App\Http\Controllers\FrontController;
 Route::get('/', [FrontController::class, 'getHome'])->name('home');
 
 Route::get('user/login', [AuthController::class, 'getLogin'])->name('user.login');
-Route::post('user/login', [AuthController::class, 'postLogin'])->name('user.login');
+Route::post('user/login', [AuthController::class, 'postLogin']);
 
 Route::get('user/registration', [AuthController::class, 'getRegistration'])->name('user.registration');
-Route::post('user/registration', [AuthController::class, 'postRegistration'])->name('user.registration');
+Route::post('user/registration', [AuthController::class, 'postRegistration']);
+
+Route::get('user/logout', [AuthController::class, 'getLogout'])->name('user.logout');

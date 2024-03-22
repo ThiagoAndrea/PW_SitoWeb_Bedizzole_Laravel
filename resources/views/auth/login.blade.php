@@ -66,6 +66,7 @@
                         </span>
                     </h2>
                     <form method="post" data-bs-theme="light" action='{{route('user.login')}}'>
+                        @csrf
                         <div class="mb-3">
                             <input class="shadow form-control" type="email" name="email" placeholder="Email" />
                         </div>

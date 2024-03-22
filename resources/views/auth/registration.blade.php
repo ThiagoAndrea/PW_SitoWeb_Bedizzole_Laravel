@@ -61,7 +61,7 @@
                             Registrazione
                         </span>
                     </h2>
-                    <form method="post" data-bs-theme="light">
+                    <form method="post" data-bs-theme="light" action="{{route('user.registration')}}">
                         <div class="mb-3">
                             <input class="shadow form-control col-6" type="nome" name="nome" placeholder="Nome" />
                         </div>

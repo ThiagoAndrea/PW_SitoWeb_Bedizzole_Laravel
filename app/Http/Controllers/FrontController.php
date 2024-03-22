@@ -9,6 +9,14 @@ class FrontController extends Controller
 {
     public function getHome()
     {
-        return view('home');
+        session_start();
+
+        if(isset($_SESSION['logged'])){
+            return view('home')->with('logged', true)->with('loggedName', $_SESSION['loggedName']);
+        }
+            
+        else
+        return view('home')->with('logged', false);
+        
     }
 }

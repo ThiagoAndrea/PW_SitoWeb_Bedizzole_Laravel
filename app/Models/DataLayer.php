@@ -144,17 +144,24 @@ class DataLayer extends Model
     }
 
     public function utenteValido($email, $password){
-        $utente = User::where('email', $email)->get('password');
-        if(count($utente) == 0)
-        return false;
-        else {
-            return (md5($password)==($utente[0]->password));
+        $utente = Utente::where('email', $email)->first(['password', 'nome']);
+    
+        if (!$utente) {
+            return false; 
+        }
+    
+        
+        if (md5($password) == $utente->password) {
+            return $utente->nome;
+        } else {
+            return false;
         }
     }
+    
 
 
     public function aggiungiUtente($email, $password, $nome, $cognome){
-        $utente = new User;
+        $utente = new Utente;
         $utente->email = $email;
         $utente->password = md5($password);
         $utente->nome = $nome;
@@ -163,7 +170,7 @@ class DataLayer extends Model
     }
 
     public function trovaIdUtenteDaEmail($email){
-        $utente = User::where('email', $email)->first();
+        $utente = Utente::where('email', $email)->first();
         return $utente->id;
     }
 }
