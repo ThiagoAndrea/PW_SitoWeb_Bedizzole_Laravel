@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\RoseController;
 
 
 /*
@@ -25,3 +26,5 @@ Route::get('user/registration', [AuthController::class, 'getRegistration'])->nam
 Route::post('user/registration', [AuthController::class, 'postRegistration']);
 
 Route::get('user/logout', [AuthController::class, 'getLogout'])->name('user.logout');
+
+Route::resource('rose', 'RoseController');
