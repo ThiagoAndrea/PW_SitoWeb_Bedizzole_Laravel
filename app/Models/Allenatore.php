@@ -9,6 +9,7 @@ class Allenatore extends Model
 {
    use HasFactory;
 
+   public $timestamps = false;
    protected $table = 'allenatori';
    protected $primaryKey = 'id_allenatore';
 

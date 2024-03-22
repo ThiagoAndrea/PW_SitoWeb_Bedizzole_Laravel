@@ -9,6 +9,7 @@ class Carrello extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'carrelli';
 
     protected $primaryKey = 'id_carrello';

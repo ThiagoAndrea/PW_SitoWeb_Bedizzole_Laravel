@@ -9,6 +9,8 @@ class Taglia extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $table = 'taglie';
     protected $primaryKey = 'id_taglia';
  

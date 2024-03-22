@@ -144,6 +144,7 @@ class DataLayer extends Model
     }
 
     public function utenteValido($email, $password){
+        
         $utente = Utente::where('email', $email)->first(['password', 'nome']);
     
         if (!$utente) {

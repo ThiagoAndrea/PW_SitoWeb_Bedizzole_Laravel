@@ -9,6 +9,7 @@ class Utente extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'utenti';
     protected $primaryKey = 'id_user';
  

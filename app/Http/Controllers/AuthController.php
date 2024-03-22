@@ -21,8 +21,8 @@ class AuthController extends Controller
        if($nome_utente != null){
         $_SESSION['logged']=true;
         $_SESSION['loggedName'] = $nome_utente;
-    
         return Redirect::to(route('home'));
+
     } else
         return 'error';
     }
@@ -33,9 +33,11 @@ class AuthController extends Controller
         return view('auth.registration');
     }
 
-    public function postRegistration()
+    public function postRegistration(Request $request)
     {
-       
+        $dl = new DataLayer();
+        $dl -> aggiungiUtente($request->input('email'), $request->input('password'), $request->input('nome'), $request->input('cognome'));
+        return Redirect::to(route('user.login'));        
     }
 
     public function getLogout()

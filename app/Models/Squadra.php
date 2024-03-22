@@ -9,6 +9,7 @@ class Squadra extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'squadre';
     protected $primaryKey = 'id_squadra';
  

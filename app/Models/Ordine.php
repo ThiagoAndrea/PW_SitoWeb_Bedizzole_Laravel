@@ -9,6 +9,7 @@ class Ordine extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'ordini';
     protected $primaryKey = 'id_ordine';
  
