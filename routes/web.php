@@ -27,4 +27,4 @@ Route::post('user/registration', [AuthController::class, 'postRegistration']);
 
 Route::get('user/logout', [AuthController::class, 'getLogout'])->name('user.logout');
 
-Route::resource('rose', 'RoseController');
+Route::resource('rose', RoseController::class);

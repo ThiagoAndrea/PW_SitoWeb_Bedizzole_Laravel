@@ -15,9 +15,9 @@ class RoseController extends Controller
         $dl = new DataLayer();
         $listaGiocatori = $dl -> elencaGiocatori();
         if (isset ($_SESSION['logged'])) {
-            return view('pulciniU10')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('listaGiocatori', $listaGiocatori);
+            return view('rose.pulciniU10')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('listaGiocatori', $listaGiocatori);
         } else {
-            return view('pulciniU10')->with('logged', false)->with('listaGiocatori', $listaGiocatori);
+            return view('rose.pulciniU10')->with('logged', false)->with('listaGiocatori', $listaGiocatori);
         }
 
     }
