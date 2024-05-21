@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\RoseController;
+use App\Http\Controllers\GiocatoreController;
 
 
 /*
@@ -28,3 +29,8 @@ Route::post('user/registration', [AuthController::class, 'postRegistration']);
 Route::get('user/logout', [AuthController::class, 'getLogout'])->name('user.logout');
 
 Route::resource('rose', RoseController::class);
+
+Route::resource('admin/giocatori', GiocatoreController::class);
+Route::get('/admin/giocatori/{id_giocatore}/update', [GiocatoreController::class, 'update'])->name('giocatore.update');
+Route::get('/admin/giocatori/{id_giocatore}/delete', [GiocatoreController::class, 'destroy'])->name('giocatore.delete');
+Route::get('/admin/giocatori/{id_giocatore}/delete/confirm', [GiocatoreController::class, 'confirmDestroy'])->name('giocatore.confirmDelete');

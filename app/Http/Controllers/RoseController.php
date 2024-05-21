@@ -10,7 +10,6 @@ class RoseController extends Controller
 {
     public function index()
     {
-
         session_start();
         $dl = new DataLayer();
         $listaGiocatori = $dl -> elencaGiocatori();

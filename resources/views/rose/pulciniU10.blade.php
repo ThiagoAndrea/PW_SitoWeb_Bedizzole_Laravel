@@ -80,7 +80,7 @@
                                 </li>
                                 <li>Cognome:<h4>{{ $giocatore->cognome }}</h4>
                                 </li>
-                                <li>Data di nascita:<h4>{{ $giocatore->data_nascita }}</h4>
+                                <li>Data di nascita:<h4>{{ $giocatore->data_di_nascita }}</h4>
                                 </li>
                                 <li>Ruolo:<h4>{{ $giocatore->ruolo }}</h4>
                                 </li>
