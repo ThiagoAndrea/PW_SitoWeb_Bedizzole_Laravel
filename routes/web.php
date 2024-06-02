@@ -28,7 +28,7 @@ Route::post('user/registration', [AuthController::class, 'postRegistration']);
 
 Route::get('user/logout', [AuthController::class, 'getLogout'])->name('user.logout');
 
-Route::get('rose', [RoseController::class, 'index']) -> name('rose');
+Route::get('rose', [RoseController::class, 'index']) -> name('rose.index');
 
 Route::resource('admin/giocatori', GiocatoreController::class);
 Route::get('/admin/giocatori/{id_giocatore}/update', [GiocatoreController::class, 'update'])->name('giocatore.update');
