@@ -4,7 +4,7 @@
 
 @section('left_navbar')
     <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="home.php">Home</a>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="{{route('home')}}">Home</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
