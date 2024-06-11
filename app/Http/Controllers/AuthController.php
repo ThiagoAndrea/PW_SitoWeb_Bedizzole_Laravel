@@ -10,7 +10,9 @@ class AuthController extends Controller
 {
     public function getLogin()
     {
-        return view('auth.login');
+        $dl = new DataLayer();
+        $squadre = $dl->elencaSquadre();
+        return view('auth.login')->with('squadre', $squadre);
     }
 
     public function postLogin(Request $request)
@@ -30,7 +32,9 @@ class AuthController extends Controller
 
     public function getRegistration()
     {
-        return view('auth.registration');
+        $dl = new DataLayer();
+        $squadre = $dl->elencaSquadre();
+        return view('auth.registration')->with('squadre', $squadre);
     }
 
     public function postRegistration(Request $request)

@@ -75,6 +75,11 @@ class DataLayer extends Model
         return $giocatori;
     }
 
+    public function trovaSquadraDaId($id_squadra){
+        $squadra = Squadra::find($id_squadra);
+        return $squadra;
+    }
+
     public function mostraCarrello($id_user){
         $carrello = Carrello::where('id_user', $id_user)->get();
         return $carrello;

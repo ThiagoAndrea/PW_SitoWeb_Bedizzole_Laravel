@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\RoseController;
+use App\Http\Controllers\SquadraController;
 use App\Http\Controllers\GiocatoreController;
 
 
@@ -28,7 +28,9 @@ Route::post('user/registration', [AuthController::class, 'postRegistration']);
 
 Route::get('user/logout', [AuthController::class, 'getLogout'])->name('user.logout');
 
-Route::get('rose', [RoseController::class, 'index']) -> name('rose.index');
+Route::get('/{squadra}', [SquadraController::class, 'show']) -> name('squadra.show');
+
+
 
 Route::resource('admin/giocatori', GiocatoreController::class);
 Route::get('/admin/giocatori/{id_giocatore}/update', [GiocatoreController::class, 'update'])->name('giocatore.update');

@@ -18,6 +18,9 @@
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="{{asset('js/bootstrap.min.js')}}js/bootstrap.min.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 
 </head>
 
@@ -51,7 +54,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                        @yield('left_navbar')
+                        <li class="nav-item"><a class="nav-link {{request()->routeIs('home') ? 'active' : ''}}" aria-current="page" href="{{route('home')}}">Home</a></li>
+                        <li class="nav-item dropdown {{ request()->is('squadre*') ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Squadre</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @foreach ($squadre as $squadra)
+                                    <li>
+                                        <a class="dropdown-item {{ request()->is('squadre/'.$squadra->id_squadra) ? 'active' : '' }}" href="{{ route('squadra.show', $squadra->id_squadra) }}">{{ $squadra->nome }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         @yield('right_navbar')
