@@ -55,12 +55,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link {{request()->routeIs('home') ? 'active' : ''}}" aria-current="page" href="{{route('home')}}">Home</a></li>
-                        <li class="nav-item dropdown {{ request()->is('squadre*') ? 'active' : '' }}">
+                        <li class="nav-item dropdown {{ request()->routeIs('squadra.show*') ? 'active' : '' }}">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Squadre</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @foreach ($squadre as $squadra)
                                     <li>
-                                        <a class="dropdown-item {{ request()->is('squadre/'.$squadra->id_squadra) ? 'active' : '' }}" href="{{ route('squadra.show', $squadra->id_squadra) }}">{{ $squadra->nome }}</a>
+                                        <a class="dropdown-item {{ request()->routeIs('squadre/'.$squadra->id_squadra) ? 'active' : '' }}" href="{{ route('squadra.show', $squadra->id_squadra) }}">{{ $squadra->nome }}</a>
                                     </li>
                                 @endforeach
                             </ul>

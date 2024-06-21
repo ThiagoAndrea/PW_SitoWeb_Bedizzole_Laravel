@@ -2,6 +2,7 @@
 
 @section('titolo_head', 'Home - FC Bedizzole')
 
+
 @section('right_navbar')
 
 <li class="nav-item"><a class="nav-link" href="carrello.php"><iconify-icon icon="bi:cart-fill"></iconify-icon> Carrello</a></li>
