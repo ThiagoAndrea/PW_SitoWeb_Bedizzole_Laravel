@@ -9,7 +9,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">Admin</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-            <li><a class="dropdown-item" href="gestioneRose.php">Gestione Rose</a></li>
+            <li><a class="dropdown-item" href="{{route('giocatori.index')}}">Gestione Rose</a></li>
             <li><a class="dropdown-item" href="gestioneShop.php">Gestione Shop</a></li>
         </ul>
     </li>
@@ -27,7 +27,7 @@
     <div class="container">
         <nav aria-label="breadcrumb" id="breadcrumb-nav">
             <ol class="breadcrumb justify-content-end">
-                <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Admin</li>
                 <li class="breadcrumb-item active" aria-current="page">Gestione Rose</li>
             </ol>
