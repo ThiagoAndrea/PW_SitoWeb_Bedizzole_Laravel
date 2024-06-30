@@ -49,7 +49,7 @@
         <div class="row mt-3 justify-content-center">
             <div class="col-md-4 text-center riquadro-eliminazione">
                 <p>Annulla l'operazione e torna indietro. Il giocatore non verrà eliminato</p>
-                <a type="button" class="btn btn-secondary" href="route('admin/giocatori')" >Annulla</a>
+                <a type="button" class="btn btn-secondary" href="{{route('giocatori.index')}}" >Annulla</a>
             </div>
             <div class="col-md-4 text-center riquadro-eliminazione">
                 <p>Il giocatore verrà rimosso in maniera definitiva dal database</p>

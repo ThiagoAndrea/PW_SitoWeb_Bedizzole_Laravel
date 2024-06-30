@@ -56,7 +56,11 @@ class DataLayer extends Model
         $giocatore->data_di_nascita = $data_di_nascita;
         $giocatore->id_squadra = $id_squadra;
         $giocatore->ruolo = $ruolo;
-        $giocatore->foto = $foto;
+        if ($foto !== null) {
+            $giocatore->foto = $foto;
+        } else {
+            $giocatore->foto = null;
+        }
         $giocatore->save();
     }
 

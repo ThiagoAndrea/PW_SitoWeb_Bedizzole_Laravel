@@ -30,19 +30,22 @@ class GiocatoreController extends Controller
         session_start();
         $dl = new DataLayer();
         $giocatore = $dl -> trovaGiocatoreDaId($id);
+        $squadre = $dl -> elencaSquadre();
         if(isset($_SESSION['logged'])){
-            return view('admin.modificaGiocatore')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('giocatore', $giocatore);
+            return view('admin.modificaGiocatore')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('giocatore', $giocatore)->with('squadre', $squadre);
         } else {
-            return view('admin.modificaGiocatore')->with('logged', false)->with('giocatore', $giocatore);
+            return view('admin.modificaGiocatore')->with('logged', false)->with('giocatore', $giocatore)->with('squadre', $squadre);
         }
     }
 
     public function create(){
         session_start();
+        $dl = new DataLayer();
+        $squadre = $dl -> elencaSquadre();
         if(isset($_SESSION['logged'])){
-            return view('admin.modificaGiocatore')->with('logged', true)->with('loggedName', $_SESSION['loggedName']);
+            return view('admin.modificaGiocatore')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('squadre', $squadre);
         } else {
-            return view('admin.modificaGiocatore')->with('logged', false);
+            return view('admin.modificaGiocatore')->with('logged', false)->with('squadre', $squadre);
         }
     }
 
@@ -71,10 +74,11 @@ class GiocatoreController extends Controller
         session_start();
         $dl = new DataLayer();
         $giocatore = $dl -> trovaGiocatoreDaId($id);
+        $squadre = $dl -> elencaSquadre();
         if(isset($_SESSION['logged']) && $giocatore != null){
-            return view('admin.eliminaGiocatore')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('giocatore', $giocatore);
+            return view('admin.eliminaGiocatore')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('giocatore', $giocatore)->with('squadre', $squadre);
         } else {
-            return view('admin.eliminaGiocatore')->with('logged', false)->with('giocatore', $giocatore);
+            return view('admin.eliminaGiocatore')->with('logged', false)->with('giocatore', $giocatore)->with('squadre', $squadre);
         }
     }
 }
