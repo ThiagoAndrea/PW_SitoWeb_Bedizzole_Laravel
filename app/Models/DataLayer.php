@@ -11,6 +11,12 @@ use App\Models\Taglia;
 use App\Models\User;
 use App\Models\Utente;
 
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,30 +44,64 @@ class DataLayer extends Model
         $giocatore->delete();
     }
 
-    public function modificaGiocatore($id, $nome, $cognome, $data_di_nascita, $id_squadra, $ruolo, $foto){
-        $giocatore = Giocatore::find($id);
-        $giocatore->nome = $nome;
-        $giocatore->cognome = $cognome;
-        $giocatore->data_di_nascita = $data_di_nascita;
-        $giocatore->id_squadra = $id_squadra;
-        $giocatore->ruolo = $ruolo;
-        $giocatore->foto = $foto;
+    public function modificaGiocatore($id, $request){
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'cognome' => 'required|string|max:255',
+            'data_di_nascita' => 'required|date',
+            'id_squadra' => 'required|integer',
+            'ruolo' => 'required|string|max:255',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+    
+        $giocatore = Giocatore::findOrFail($id);
+        $giocatore->nome = $request->nome;
+        $giocatore->cognome = $request->cognome;
+        $giocatore->data_di_nascita = $request->data_di_nascita;
+        $giocatore->id_squadra = $request->id_squadra;
+        $giocatore->ruolo = $request->ruolo;
+    
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/giocatori'), $filename);
+            $giocatore->foto = $filename;
+        }
+    
         $giocatore->save();
     }
 
-    public function aggiungiGiocatore($nome, $cognome, $data_di_nascita, $id_squadra, $ruolo, $foto){
-        $giocatore = new Giocatore;
-        $giocatore->nome = $nome;
-        $giocatore->cognome = $cognome;
-        $giocatore->data_di_nascita = $data_di_nascita;
-        $giocatore->id_squadra = $id_squadra;
-        $giocatore->ruolo = $ruolo;
-        if ($foto !== null) {
-            $giocatore->foto = $foto;
-        } else {
-            $giocatore->foto = null;
-        }
-        $giocatore->save();
+    public function aggiungiGiocatore(Request $request){
+        
+            $request->validate([
+                'nome' => 'required|string|max:255',
+                'cognome' => 'required|string|max:255',
+                'data_di_nascita' => 'required|date',
+                'id_squadra' => 'required|integer',
+                'ruolo' => 'required|string|max:255',
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+
+            $giocatore = new Giocatore;
+            $giocatore->nome = $request->nome;
+            $giocatore->cognome = $request->cognome;
+            $giocatore->data_di_nascita = $request->data_di_nascita;
+            $giocatore->id_squadra = $request->id_squadra;
+            $giocatore->ruolo = $request->ruolo;
+    
+            if ($request->hasFile('foto')) {
+                // Rimuove la vecchia foto se esiste
+                if ($giocatore->foto && File::exists(public_path('img/giocatori/' . $giocatore->foto))) {
+                    File::delete(public_path('img/giocatori/' . $giocatore->foto));
+                }
+                $file = $request->file('foto');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('img/giocatori'), $filename);
+                $giocatore->foto = $filename;
+            }
+    
+            $giocatore->save();
+    
     }
 
     public function elencaProdotti(){

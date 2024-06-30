@@ -40,132 +40,82 @@
 @endsection
 
 @section('contenuto')
-    <div class="container ">
-        <div class="row justify-content-center ">
-            <div class="col-md-6 container-aggiungiGiocatore">
-                <h5 class="text-center">
-                    @if (isset($giocatore->id_giocatore))
-                        Modifica il giocatore
-                    @else
-                        Aggiungi un nuovo giocatore
-                    @endif
-                </h5>
-                @if(isset($giocatore->id_giocatore))
-                <form method="get" action="{{route('giocatore.update', ['id_giocatore' => $giocatore->id_giocatore])}}">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 container-aggiungiGiocatore">
+            <h5 class="text-center">
+                @if (isset($giocatore->id))
+                    Modifica il giocatore
                 @else
-                <form method="post" action="{{route('giocatori.store')}}">
+                    Aggiungi un nuovo giocatore
                 @endif
-                    @csrf
-                    <div class="mb-3">
-                        <label for="id_squadra" class="form-label">Squadra:</label>
-                        @if (isset($giocatore->id_giocatore) && $giocatore != null)
-                            <select class="form-select" id="id_squadra" name="id_squadra" required>
-                                <option value="" disabled selected>Seleziona una squadra</option>
-                                <option value="7" {{ $giocatore->id_squadra == 7 ? 'selected' : '' }}>Giovanissimi U14
-                                </option>
-                                <option value="6" {{ $giocatore->id_squadra == 6 ? 'selected' : '' }}>Esordienti U13
-                                </option>
-                                <option value="5" {{ $giocatore->id_squadra == 5 ? 'selected' : '' }}>Esordienti U12
-                                </option>
-                                <option value="4" {{ $giocatore->id_squadra == 4 ? 'selected' : '' }}>Pulcini U11
-                                </option>
-                                <option value="3" {{ $giocatore->id_squadra == 3 ? 'selected' : '' }}>Pulcini U10
-                                </option>
-                                <option value="2" {{ $giocatore->id_squadra == 2 ? 'selected' : '' }}>Piccoli Amici U9
-                                </option>
-                                <option value="1" {{ $giocatore->id_squadra == 1 ? 'selected' : '' }}>Scuola Calcio
-                                </option>
-                            @else
-                                <select class="form-select" id="id_squadra" name="id_squadra" required>
-                                    <option value="" disabled selected>Seleziona una squadra</option>
-                                    <option value="7">Giovanissimi U14</option>
-                                    <option value="6">Esordienti U13</option>
-                                    <option value="5">Esordienti U12</option>
-                                    <option value="4">Pulcini U11</option>
-                                    <option value="3">Pulcini U10</option>
-                                    <option value="2">Piccoli Amici U9</option>
-                                    <option value="1">Scuola Calcio</option>
-                        @endif
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="nome" class="form-label">Nome:</label>
-                                @if (isset($giocatore->id_giocatore) && $giocatore != null)
-                                    <input type="text" class="form-control" id="nome" name="nome"
-                                        value="{{ $giocatore->nome }}" required>
-                                @else
-                                    <input type="text" class="form-control" id="nome" name="nome" required>
-                                @endif
-                            </div>
-                            <div class="col-md-6">
-                                <label for="cognome" class="form-label">Cognome:</label>
-                                @if (isset($giocatore->id_giocatore) && $giocatore != null)
-                                    <input type="text" class="form-control" id="cognome" name="cognome"
-                                        value="{{ $giocatore->cognome }}" required>
-                                @else
-                                    <input type="text" class="form-control" id="cognome" name="cognome" required>
-                                @endif
-                            </div>
+            </h5>
+            @if(isset($giocatore->id))
+            <form method="post" action="{{route('giocatori.update', ['giocatore' => $giocatore->id])}}" enctype="multipart/form-data">
+                @method('PUT')
+            @else
+            <form method="post" action="{{route('giocatori.store')}}" enctype="multipart/form-data">
+            @endif
+                @csrf
+                <div class="mb-3">
+                    <label for="id_squadra" class="form-label">Squadra:</label>
+                    <select class="form-select" id="id_squadra" name="id_squadra" required>
+                        <option value="" disabled selected>Seleziona una squadra</option>
+                        <option value="7" {{ isset($giocatore->id_squadra) && $giocatore->id_squadra == 7 ? 'selected' : '' }}>Giovanissimi U14</option>
+                        <option value="6" {{ isset($giocatore->id_squadra) && $giocatore->id_squadra == 6 ? 'selected' : '' }}>Esordienti U13</option>
+                        <option value="5" {{ isset($giocatore->id_squadra) && $giocatore->id_squadra == 5 ? 'selected' : '' }}>Esordienti U12</option>
+                        <option value="4" {{ isset($giocatore->id_squadra) && $giocatore->id_squadra == 4 ? 'selected' : '' }}>Pulcini U11</option>
+                        <option value="3" {{ isset($giocatore->id_squadra) && $giocatore->id_squadra == 3 ? 'selected' : '' }}>Pulcini U10</option>
+                        <option value="2" {{ isset($giocatore->id_squadra) && $giocatore->id_squadra == 2 ? 'selected' : '' }}>Piccoli Amici U9</option>
+                        <option value="1" {{ isset($giocatore->id_squadra) && $giocatore->id_squadra == 1 ? 'selected' : '' }}>Scuola Calcio</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="nome" class="form-label">Nome:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="{{ isset($giocatore->nome) ? $giocatore->nome : '' }}" required>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="data_di_nascita" class="form-label">Data di Nascita:</label>
-                                @if (isset($giocatore->id_giocatore) && $giocatore != null)
-                                    <input type="date" class="form-control" id="data_nascita" name="data_di_nascita"
-                                        value="{{ $giocatore->data_di_nascita }}" required>
-                                @else
-                                    <input type="date" class="form-control" id="data_nascita" name="data_di_nascita"
-                                        required>
-                                @endif
-                            </div>
-                            <div class="col-md-6">
-                                <label for="ruolo" class="form-label">Ruolo:</label>
-                                @if (isset($giocatore->id_giocatore) && $giocatore != null)
-                                    <select class="form-select" id="ruolo" name="ruolo" required>
-                                        <option value="" disabled>Seleziona un ruolo</option>
-                                        <option value="Portiere" {{ $giocatore->ruolo == 'Portiere' ? 'selected' : '' }}>
-                                            Portiere</option>
-                                        <option value="Difensore"
-                                            {{ $giocatore->ruolo == 'Difensore' ? 'selected' : '' }}>Difensore</option>
-                                        <option value="Centrocampista"
-                                            {{ $giocatore->ruolo == 'Centrocampista' ? 'selected' : '' }}>Centrocampista
-                                        </option>
-                                        <option value="Attaccante"
-                                            {{ $giocatore->ruolo == 'Attaccante' ? 'selected' : '' }}>Attaccante</option>
-                                    </select>
-                                @else
-                                    <select class="form-select" id="ruolo" name="ruolo" required>
-                                        <option value="" disabled selected>Seleziona un ruolo</option>
-                                        <option value="Portiere">Portiere</option>
-                                        <option value="Difensore">Difensore</option>
-                                        <option value="Centrocampista">Centrocampista</option>
-                                        <option value="Attaccante">Attaccante</option>
-                                    </select>
-                                @endif
-                            </div>
+                        <div class="col-md-6">
+                            <label for="cognome" class="form-label">Cognome:</label>
+                            <input type="text" class="form-control" id="cognome" name="cognome" value="{{ isset($giocatore->cognome) ? $giocatore->cognome : '' }}" required>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="foto" class="form-label">Foto profilo:</label>
-                        <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="data_di_nascita" class="form-label">Data di Nascita:</label>
+                            <input type="date" class="form-control" id="data_di_nascita" name="data_di_nascita" value="{{ isset($giocatore->data_di_nascita) ? $giocatore->data_di_nascita : '' }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ruolo" class="form-label">Ruolo:</label>
+                            <select class="form-select" id="ruolo" name="ruolo" required>
+                                <option value="" disabled>Seleziona un ruolo</option>
+                                <option value="Portiere" {{ isset($giocatore->ruolo) && $giocatore->ruolo == 'Portiere' ? 'selected' : '' }}>Portiere</option>
+                                <option value="Difensore" {{ isset($giocatore->ruolo) && $giocatore->ruolo == 'Difensore' ? 'selected' : '' }}>Difensore</option>
+                                <option value="Centrocampista" {{ isset($giocatore->ruolo) && $giocatore->ruolo == 'Centrocampista' ? 'selected' : '' }}>Centrocampista</option>
+                                <option value="Attaccante" {{ isset($giocatore->ruolo) && $giocatore->ruolo == 'Attaccante' ? 'selected' : '' }}>Attaccante</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        @if(isset($giocatore->id_giocatore) && $giocatore != null)
-                            <input type="hidden" name="id" value="{{ $giocatore->id }}">
-                            <button type="button" class="btn btn-secondary">Annulla</button>
-                            <button type="submit" value="Save" class="btn btn-success">Salva</button>
-                        @else
-                            <button type="button" class="btn btn-secondary">Annulla</button>
-                            <button type="submit" class="btn btn-success">Aggiungi</button>
-                        @endif
-                    </div>
-                </form>
-            </div>
-
-
+                </div>
+                <div class="mb-3">
+                    <label for="foto" class="form-label">Foto profilo:</label>
+                    <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+                </div>
+                <div class="d-flex justify-content-between">
+                    @if(isset($giocatore->id) && $giocatore != null)
+                        <input type="hidden" name="id" value="{{ $giocatore->id }}">
+                        <button type="button" class="btn btn-secondary">Annulla</button>
+                        <button type="submit" class="btn btn-success">Salva</button>
+                    @else
+                        <button type="button" class="btn btn-secondary">Annulla</button>
+                        <button type="submit" class="btn btn-success">Aggiungi</button>
+                    @endif
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
 
 @endsection

@@ -52,7 +52,7 @@
                 @foreach ($listaGiocatori as $giocatore)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                         <div class="immagineProdotto cardGiocatore">
-                            <img src="{{ $giocatore->foto }}" class="img-fluid">
+                            <img src="{{ asset('img/giocatori/' . $giocatore->foto) }}" class="img-fluid">
                             <h4 class="datiGiocatore">{{ $giocatore->nome }} {{ $giocatore->cognome }}</h4>
                             <ul class="datiNascosti">
                                 <li>Nome:<h4>{{ $giocatore->nome }}</h4>

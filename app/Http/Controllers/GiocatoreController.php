@@ -52,14 +52,14 @@ class GiocatoreController extends Controller
     public function store(Request $request){
         session_start();
         $dl = new DataLayer();
-        $dl -> aggiungiGiocatore($request -> nome, $request -> cognome, $request -> data_di_nascita, $request -> id_squadra, $request -> ruolo, $request -> foto);
+        $dl -> aggiungiGiocatore($request);
         return redirect('admin/giocatori');
     }
 
     public function update(Request $request, $id){
         session_start();
         $dl = new DataLayer();
-        $dl -> modificaGiocatore($id, $request -> nome, $request -> cognome, $request -> data_di_nascita, $request -> id_squadra, $request -> ruolo, $request -> foto);
+        $dl -> modificaGiocatore($id, $request);
         return redirect('admin/giocatori');
     }
 

@@ -30,14 +30,14 @@
         <header class="intestazione">
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col text-center">
-                <img src="{{ asset('img/logo.png') }}" class="img-fluid img-header">
+                <img src="{{ asset('img/static/logo.png') }}" class="img-fluid img-header">
 
                 </div>
                 <div class="col text-center">
                     <h1>FC Bedizzole</h1>
                 </div>
                 <div class="col text-center">
-                    <img src="{{ asset('img/logo.png') }}" class="img-fluid img-header">
+                    <img src="{{ asset('img/static/logo.png') }}" class="img-fluid img-header">
                 </div>
             </div>
         </header>
@@ -87,7 +87,7 @@
         <footer id="bottom" class="row d-flex align-items-center justify-content-center">
             <div class="row">
                 <div class="col  text-center">
-                    <img src="{{ asset('img/logo.png') }}" class="img-fluid logo-footer">
+                    <img src="{{ asset('img/static/logo.png') }}" class="img-fluid logo-footer">
                 </div>
                 <div class="col text-center">
                     <h3>Contatti</h3>
