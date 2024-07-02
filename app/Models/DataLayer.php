@@ -54,7 +54,7 @@ class DataLayer extends Model
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
     
-        $giocatore = Giocatore::findOrFail($id);
+        $giocatore = Giocatore::find($id);
         $giocatore->nome = $request->nome;
         $giocatore->cognome = $request->cognome;
         $giocatore->data_di_nascita = $request->data_di_nascita;

@@ -81,4 +81,5 @@ class GiocatoreController extends Controller
             return view('admin.eliminaGiocatore')->with('logged', false)->with('giocatore', $giocatore)->with('squadre', $squadre);
         }
     }
+    
 }

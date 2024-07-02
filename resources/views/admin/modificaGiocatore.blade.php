@@ -44,14 +44,14 @@
     <div class="row justify-content-center">
         <div class="col-md-6 container-aggiungiGiocatore">
             <h5 class="text-center">
-                @if (isset($giocatore->id))
+                @if (isset($giocatore->id_giocatore))
                     Modifica il giocatore
                 @else
                     Aggiungi un nuovo giocatore
                 @endif
             </h5>
-            @if(isset($giocatore->id))
-            <form method="post" action="{{route('giocatori.update', ['giocatore' => $giocatore->id])}}" enctype="multipart/form-data">
+            @if(isset($giocatore->id_giocatore))
+            <form method="put" action="{{route('giocatore.update', ['id_giocatore' => $giocatore->id_giocatore])}}" enctype="multipart/form-data">
                 @method('PUT')
             @else
             <form method="post" action="{{route('giocatori.store')}}" enctype="multipart/form-data">
@@ -75,7 +75,9 @@
                         <div class="col-md-6">
                             <label for="nome" class="form-label">Nome:</label>
                             <input type="text" class="form-control" id="nome" name="nome" value="{{ isset($giocatore->nome) ? $giocatore->nome : '' }}" required>
+                            <span id="nome-invalido"></span>
                         </div>
+                        
                         <div class="col-md-6">
                             <label for="cognome" class="form-label">Cognome:</label>
                             <input type="text" class="form-control" id="cognome" name="cognome" value="{{ isset($giocatore->cognome) ? $giocatore->cognome : '' }}" required>
@@ -103,13 +105,14 @@
                     <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
                 </div>
                 <div class="d-flex justify-content-between">
-                    @if(isset($giocatore->id) && $giocatore != null)
-                        <input type="hidden" name="id" value="{{ $giocatore->id }}">
+                    @if(isset($giocatore->id_giocatore) && $giocatore != null)
+                        <input type="hidden" name="id" value="{{ $giocatore->id_giocatore}}">
                         <button type="button" class="btn btn-secondary">Annulla</button>
-                        <button type="submit" class="btn btn-success">Salva</button>
+                        <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkGiocatore()">Salva</button>
+
                     @else
                         <button type="button" class="btn btn-secondary">Annulla</button>
-                        <button type="submit" class="btn btn-success">Aggiungi</button>
+                        <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkGiocatore()">Aggiungi</button>
                     @endif
                 </div>
             </form>
