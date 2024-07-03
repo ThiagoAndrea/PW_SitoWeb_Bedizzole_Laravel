@@ -5,14 +5,11 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use  App\Models\Squadra;
-use  App\Models\Allenatore;
 use  App\Models\Giocatore;
-use  App\Models\Prodotto;
 use  App\Models\Taglia;
-use  App\Models\TagliaProdotto;
 use App\Models\Utente;
 use App\Models\DataLayer;
-
+use App\Models\Notizia;
 
 class db_seed extends Seeder
 {
@@ -93,6 +90,8 @@ class db_seed extends Seeder
         foreach($squadre as $squadra){
             Giocatore::factory()->count(rand(10,20))->create(['id_squadra' => $squadra->id_squadra]);
         }
+
+        Notizia::factory()->count(10)->create();
 
 
 

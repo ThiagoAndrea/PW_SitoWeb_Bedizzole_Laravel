@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/icons.css')}}">
 
 
     <!-- jQuery e plugin JavaScript  -->
@@ -66,6 +67,7 @@
                                 @endforeach
                             </ul>
                         </li>
+                        <li class="nav-item"><a class="nav-link {{request() ->routeIs('notizie.index') ? 'active' : ''}}" href="{{route('notizie.index')}}">Notizie</a></li>
                         
                     </ul>
                     <ul class="navbar-nav ms-auto">

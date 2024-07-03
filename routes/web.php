@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\SquadraController;
 use App\Http\Controllers\GiocatoreController;
+use App\Http\Controllers\NotiziaController;
 
 
 /*
@@ -28,11 +29,17 @@ Route::post('user/registration', [AuthController::class, 'postRegistration']);
 
 Route::get('user/logout', [AuthController::class, 'getLogout'])->name('user.logout');
 
-Route::get('/{squadra}', [SquadraController::class, 'show']) -> name('squadra.show');
-
-
 
 Route::resource('admin/giocatori', GiocatoreController::class);
 Route::get('/admin/giocatori/{id_giocatore}/update', [GiocatoreController::class, 'update'])->name('giocatore.update');
 Route::get('/admin/giocatori/{id_giocatore}/delete', [GiocatoreController::class, 'destroy'])->name('giocatore.delete');
 Route::get('/admin/giocatori/{id_giocatore}/delete/confirm', [GiocatoreController::class, 'confirmDestroy'])->name('giocatore.confirmDelete');
+
+//Rotte per le notizie
+
+Route::resource('notizie', NotiziaController::class);
+Route::get('/notizie/{id_notizia}', [NotiziaController::class, 'show'])->name('notizia.show');
+
+
+//Questo va in fondo alle rotte perché altrimenti si sovrappone
+Route::get('/{squadra}', [SquadraController::class, 'show']) -> name('squadra.show');

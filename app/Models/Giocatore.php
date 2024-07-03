@@ -11,11 +11,11 @@ class Giocatore extends Model
 
     public $timestamps = false;
     protected $table = 'giocatori';
-   protected $primaryKey = 'id_giocatore';
+    protected $primaryKey = 'id_giocatore';
 
-   protected $fillable = ['nome', 'cognome', 'data_di_nascita', 'id_squadra', 'ruolo', 'foto'];
+    protected $fillable = ['nome', 'cognome', 'data_di_nascita', 'id_squadra', 'ruolo', 'foto'];
 
-   public function squadre(){
-    return $this->belongsTo(Squadra::class, 'id_squadra');
+    public function squadre(){
+        return $this->belongsTo(Squadra::class, 'id_squadra');
    }
 }

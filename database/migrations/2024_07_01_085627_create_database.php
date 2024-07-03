@@ -80,7 +80,14 @@ return new class extends Migration
             $table->foreign('id_taglia')->references('id_taglia')->on('taglie')->onDelete('cascade');
         });
 
-        
+        Schema::create('notizie', function(Blueprint $table) {
+            $table->increments('id_notizia');
+            $table->date('data');
+            $table->string('titolo');
+            $table->text('testo');
+            $table->string('foto')->nullable();
+
+        });
     }
 
     /**

@@ -8,19 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class SquadraController extends Controller
 {
-    public function index()
-    {
-        session_start();
-        $dl = new DataLayer();
-        $listaGiocatori = $dl -> elencaGiocatori();
-        if (isset ($_SESSION['logged'])) {
-            return view('rose.pulciniU10')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('listaGiocatori', $listaGiocatori);
-        } else {
-            return view('rose.pulciniU10')->with('logged', false)->with('listaGiocatori', $listaGiocatori);
-        }
-
-    }
-
+   
     public function show($id_squadra)
     {
         session()->start();

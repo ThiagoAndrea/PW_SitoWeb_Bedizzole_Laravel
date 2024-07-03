@@ -223,4 +223,19 @@ class DataLayer extends Model
         $utente = Utente::where('email', $email)->first();
         return $utente->id;
     }
+
+    //Funzioni per le notizie
+
+    public function elencaNotizie()
+    {
+        $notizie = Notizia::orderBy('data', 'desc')->get(); // Ordina le notizie per data in ordine decrescente
+        return $notizie;
+    }
+
+    public function trovaNotiziaDaId($id)
+    {
+        $notizia = Notizia::find($id);
+        return $notizia;
+    }
+
 }
