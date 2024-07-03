@@ -81,12 +81,14 @@
                         <div class="col-md-6">
                             <label for="cognome" class="form-label">Cognome:</label>
                             <input type="text" class="form-control" id="cognome" name="cognome" value="{{ isset($giocatore->cognome) ? $giocatore->cognome : '' }}" required>
+                            <span id="cognome-invalido"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label for="data_di_nascita" class="form-label">Data di Nascita:</label>
                             <input type="date" class="form-control" id="data_di_nascita" name="data_di_nascita" value="{{ isset($giocatore->data_di_nascita) ? $giocatore->data_di_nascita : '' }}" required>
+                            <span id="data-invalida"></span>
                         </div>
                         <div class="col-md-6">
                             <label for="ruolo" class="form-label">Ruolo:</label>
