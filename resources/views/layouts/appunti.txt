@@ -2,3 +2,25 @@
                         <li class="nav-item"><a class="nav-link {{request() ->routeIs('modulistica.index') ? 'active' : ''}}" href="{{route('modulistica.index')}}">Modulistica</a></li>
                         <li class="nav-item"><a class="nav-link {{request() ->routeIs('shop.index') ? 'active' : ''}}" href="{{route('shop.index')}}">Shop</a></li>
                         <li class="nav-item"><a class="nav-link {{request() ->routeIs('contatti.index') ? 'active' : ''}}" href="{{route('contatti.index')}}">Contatti</a></li>
+
+                        Passi per le prossime  cose da fare.
+                        Notizie: 
+                            1. Creare la vista per la visione della singola notizia
+                            2. Creare la sezione per aggiungere/eliminare le notizie (vista giornalista)
+                            3. Creare il dato "notizia" nelle migrations e creare il modello
+                        
+                        Modulistica:
+                            1: Creare la vista php, si può accedere solo se si è loggati, come al carrello.
+                            2: Fare in modo che l'utente loggato possa scaricare i moduli e anche caricarli? Se può anche caricarli devo salvarli e controllarli da qualche parte
+
+                        Shop: 
+                            1: Fare la gestione dello shop nella parte "admin".
+                            2: Aggiungere anche la sezione di ordini effettuati. (Forse una struttura dati in più? verifica gli sweets)
+                            3: Modificare il bottone "aggiungi al carrello" solo se si è loggati, mentre allo shop ci può accedere chiunque
+                        
+                        Contatti:
+                            1: Creare la pagina in cui solo se si è loggati si può accedere.
+                            2: Possibilità di inviare la mail da loggati
+                        
+                        Carrello:
+                            1: Fare la vista
