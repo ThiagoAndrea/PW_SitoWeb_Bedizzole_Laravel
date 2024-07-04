@@ -4,10 +4,8 @@
                         <li class="nav-item"><a class="nav-link {{request() ->routeIs('contatti.index') ? 'active' : ''}}" href="{{route('contatti.index')}}">Contatti</a></li>
 
                         Passi per le prossime  cose da fare.
-                        Notizie: 
-                            1. Creare la vista per la visione della singola notizia
-                            2. Creare la sezione per aggiungere/eliminare le notizie (vista giornalista)
-                            3. Creare il dato "notizia" nelle migrations e creare il modello
+                        Notizie:
+                            2. Creare la sezione per aggiungere/eliminare le notizie (vista giornalista). Sia admin che giornalista potranno accedere a questa sezione ma da due parti differenti.
                         
                         Modulistica:
                             1: Creare la vista php, si può accedere solo se si è loggati, come al carrello.
@@ -24,3 +22,11 @@
                         
                         Carrello:
                             1: Fare la vista
+
+                        Login:
+                            1: Possibilità di modificare il proprio profilo e password
+                            2: Sistemare la vista perché bruttina ed abbozzata
+                        
+                        Generale:
+                            1: Sistemare layout da Telefono (quando avrai finito tutto)
+                            2: Sistemare i permessi tra utenti visitatori / utenti registrati / giornalisti / admin
