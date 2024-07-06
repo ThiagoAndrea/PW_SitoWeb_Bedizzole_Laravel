@@ -42,6 +42,19 @@
 
 
 @section('contenuto')
+
+@if($logged)
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+            <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{route('giornalista.index')}}">Vai alla sezione giornalisti</a> 
+    </div>
+    
+    @endif
+
+
+
+
 @foreach ($notizie as $notizia)
     <div class="container">
         <div class="container container-notizia">

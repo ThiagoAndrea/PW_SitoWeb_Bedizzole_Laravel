@@ -40,6 +40,10 @@ Route::get('/admin/giocatori/{id_giocatore}/delete/confirm', [GiocatoreControlle
 Route::resource('notizie', NotiziaController::class);
 Route::get('/notizie/{id_notizia}', [NotiziaController::class, 'show'])->name('notizia.show');
 
+//Rotta per la vista del giornalista
+Route::get('/giornalista', [NotiziaController::class, 'getGiornalista'])->name('giornalista.index');
+
 
 //Questo va in fondo alle rotte perché altrimenti si sovrappone
 Route::get('/{squadra}', [SquadraController::class, 'show']) -> name('squadra.show');
+

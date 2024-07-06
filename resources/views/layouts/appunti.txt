@@ -3,7 +3,7 @@
                         <li class="nav-item"><a class="nav-link {{request() ->routeIs('shop.index') ? 'active' : ''}}" href="{{route('shop.index')}}">Shop</a></li>
                         <li class="nav-item"><a class="nav-link {{request() ->routeIs('contatti.index') ? 'active' : ''}}" href="{{route('contatti.index')}}">Contatti</a></li>
 
-                        Passi per le prossime  cose da fare.
+                        Passi per le prossime  cose da fare:
                         Notizie:
                             2. Creare la sezione per aggiungere/eliminare le notizie (vista giornalista). Sia admin che giornalista potranno accedere a questa sezione ma da due parti differenti.
                         
@@ -23,10 +23,16 @@
                         Carrello:
                             1: Fare la vista
 
+                        Home:
+                            1: Fare la vista con la pagina instagram per impostare il layout
+
                         Login:
                             1: Possibilità di modificare il proprio profilo e password
+                            2: Possibilità di vedere i propri ordini
                             2: Sistemare la vista perché bruttina ed abbozzata
-                        
+                            3: Possibilità di modificare il proprio profilo utente
+                                                
                         Generale:
                             1: Sistemare layout da Telefono (quando avrai finito tutto)
                             2: Sistemare i permessi tra utenti visitatori / utenti registrati / giornalisti / admin
+                            

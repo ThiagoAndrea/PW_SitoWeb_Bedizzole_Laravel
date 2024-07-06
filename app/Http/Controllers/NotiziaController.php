@@ -34,4 +34,17 @@ class NotiziaController extends Controller
             return view('notizie.dettaglioNotizia')->with('logged', false)->with('notizia', $notizia)->with('squadre', $squadre)->with('notizie', $notizie);
         }
     }
+
+    public function getGiornalista()
+    {
+        session_start();
+        $dl = new DataLayer();
+        $notizie = $dl -> elencaNotizie();
+        $squadre = $dl -> elencaSquadre();
+        if(isset($_SESSION['logged'])){
+            return view('notizie.giornalista')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('notizie', $notizie)->with('squadre', $squadre);
+        } else {
+            return view('notizie.giornalista')->with('logged', false)->with('notizie', $notizie)->with('squadre', $squadre);
+        }
+    }
 }

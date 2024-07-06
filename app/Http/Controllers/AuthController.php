@@ -23,7 +23,7 @@ class AuthController extends Controller
        if($nome_utente != null){
         $_SESSION['logged']=true;
         $_SESSION['loggedName'] = $nome_utente;
-        return Redirect::to(route('home'));
+        return Redirect::to(route('home'))->with('logged', true)->with('loggedName', $nome_utente);
 
     } else
         return 'error';
@@ -39,9 +39,11 @@ class AuthController extends Controller
 
     public function postRegistration(Request $request)
     {
+        session_start();
         $dl = new DataLayer();
         $dl -> aggiungiUtente($request->input('email'), $request->input('password'), $request->input('nome'), $request->input('cognome'));
-        return Redirect::to(route('user.login'));        
+        $squadre = $dl -> elencaSquadre();
+        return Redirect::to(route('home'))->with('logged', true)->with('loggedName', $request->input('nome'))->with('squadre', $squadre);        
     }
 
     public function getLogout()

@@ -58,7 +58,7 @@
                             <input type="checkbox" name="ricorda">
                         </div>
                         <div>
-                            <p>Non sei ancora iscritto? Clicca <a href="registrazione.php">qui per registrarti</a></p>
+                            <p>Non sei ancora iscritto? Clicca <a href="{{route('user.registration')}}">qui per registrarti</a></p>
                         </div>
                     </form>
                 </div>
