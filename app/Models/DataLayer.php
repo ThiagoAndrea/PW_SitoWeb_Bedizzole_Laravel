@@ -134,10 +134,14 @@ class DataLayer extends Model
         return $taglia;
     }
 
-    public function elencaTaglieDaProdotto($id_prodotto){
-        $taglie = Taglia::where('id_prodotto', $id_prodotto)->get();
-        return $taglie;
+    public function elencaTaglieDaProdotto($id_prodotto)
+{
+    $prodotto = Prodotto::find($id_prodotto);
+    if ($prodotto) {
+        return $prodotto->taglie;
     }
+    return collect();
+}
 
     public function aggiungiProdotto($descrizione, $foto, $prezzo){
         $prodotto = new Prodotto;
@@ -238,4 +242,48 @@ class DataLayer extends Model
         return $notizia;
     }
 
+    public function aggiungiNotizia(Request $request){
+        
+        $notizia = new Notizia;
+        $notizia->titolo = $request->titolo;
+        $notizia->testo = $request->testo;
+        $notizia->data = $request->data;
+
+        if ($request->hasFile('foto')) {
+            // Rimuove la vecchia foto se esiste
+            if ($notizia->foto && File::exists(public_path('img/notizie/' . $notizia->foto))) {
+                File::delete(public_path('img/notizie/' . $notizia->foto));
+            }
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/notizie'), $filename);
+            $notizia->foto = $filename;
+        }
+
+        $notizia->save();
+    }
+
+    public function modificaNotizia($id, $request){
+           
+        $notizia = Notizia::find($id);
+        $notizia->titolo = $request->titolo;
+        $notizia->testo = $request->testo;
+        $notizia->data = $request->data;
+    
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/notizie'), $filename);
+            $notizia->foto = $filename;
+        }
+    
+        $notizia->save();
+    }
+
+    public function eliminaNotizia($id){
+        $notizia = Notizia::find($id);
+        $notizia->delete();
+    }
+
 }
+

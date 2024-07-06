@@ -71,10 +71,18 @@ return new class extends Migration
 
         Schema::create('ordini', function(Blueprint $table) {
             $table->increments('id_ordine');
+            $table->integer('id_user')->unsigned();
+            $table->date('data_ordine');
+            $table->string('lista_prodotti');
+            $table->foreign('id_user')->references('id_user')->on('utenti')->onDelete('cascade');            
+        });
+
+        Schema::create('dettagli_carrello', function(Blueprint $table) {
+            $table->increments('id_dettaglio');
             $table->integer('id_carrello')->unsigned();
             $table->integer('id_prodotto')->unsigned();
-            $table->integer('id_taglia')->unsigned();
             $table->integer('quantita');
+            $table->integer('id_taglia')->unsigned();
             $table->foreign('id_carrello')->references('id_carrello')->on('carrelli')->onDelete('cascade');
             $table->foreign('id_prodotto')->references('id_prodotto')->on('prodotti')->onDelete('cascade');
             $table->foreign('id_taglia')->references('id_taglia')->on('taglie')->onDelete('cascade');

@@ -299,3 +299,9 @@ footer div h3 {
     color: red;
 }
 
+.add-news {
+    margin-top:2%;
+    margin-bottom: 2%;
+    font-style: bold;
+    padding: 1%;
+}

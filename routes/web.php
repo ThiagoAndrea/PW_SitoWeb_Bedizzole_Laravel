@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\SquadraController;
 use App\Http\Controllers\GiocatoreController;
 use App\Http\Controllers\NotiziaController;
+use App\Http\Controllers\ProdottoController;
 
 
 /*
@@ -43,6 +44,11 @@ Route::get('/notizie/{id_notizia}', [NotiziaController::class, 'show'])->name('n
 //Rotta per la vista del giornalista
 Route::get('/giornalista', [NotiziaController::class, 'getGiornalista'])->name('giornalista.index');
 
+//Rotta per lo shop
+Route::get('/shop', [ProdottoController::class, 'showShop'])->name('showShop');
+
+//Rotte per la gestione del negozio lato admin
+Route::resource('admin/prodotti', ProdottoController::class);
 
 //Questo va in fondo alle rotte perché altrimenti si sovrappone
 Route::get('/{squadra}', [SquadraController::class, 'show']) -> name('squadra.show');

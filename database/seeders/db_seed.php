@@ -10,6 +10,7 @@ use  App\Models\Taglia;
 use App\Models\Utente;
 use App\Models\DataLayer;
 use App\Models\Notizia;
+use App\Models\Prodotto;
 
 class db_seed extends Seeder
 {
@@ -92,9 +93,18 @@ class db_seed extends Seeder
         }
 
         Notizia::factory()->count(10)->create();
+        Prodotto::factory()->count(10)->create()->each(function($prodotto) {
+            // Selezionare un numero casuale di taglie (da 1 a 3)
+            $numTaglie = rand(1, 3);
+
+            // Recuperare un numero casuale di taglie e ottenere solo gli ID
+            $taglieIds = Taglia::inRandomOrder()->limit($numTaglie)->pluck('id_taglia');
+
+            // Associazione delle taglie al prodotto
+            $prodotto->taglie()->attach($taglieIds);
+        });
 
 
-
-
+        
     }
 }

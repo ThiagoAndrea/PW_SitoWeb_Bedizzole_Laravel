@@ -1,20 +1,22 @@
                         
                         <li class="nav-item"><a class="nav-link {{request() ->routeIs('modulistica.index') ? 'active' : ''}}" href="{{route('modulistica.index')}}">Modulistica</a></li>
-                        <li class="nav-item"><a class="nav-link {{request() ->routeIs('shop.index') ? 'active' : ''}}" href="{{route('shop.index')}}">Shop</a></li>
                         <li class="nav-item"><a class="nav-link {{request() ->routeIs('contatti.index') ? 'active' : ''}}" href="{{route('contatti.index')}}">Contatti</a></li>
 
                         Passi per le prossime  cose da fare:
-                        Notizie:
-                            2. Creare la sezione per aggiungere/eliminare le notizie (vista giornalista). Sia admin che giornalista potranno accedere a questa sezione ma da due parti differenti.
                         
                         Modulistica:
                             1: Creare la vista php, si può accedere solo se si è loggati, come al carrello.
                             2: Fare in modo che l'utente loggato possa scaricare i moduli e anche caricarli? Se può anche caricarli devo salvarli e controllarli da qualche parte
+                        
+                        Allenatori:
+                            1: Creare una nuova sezione dell'admin "gestione allenatori". Funziona come i giocatori.
+                            2: Aggiungere alla vista delle squadre come con i giocatori.
 
                         Shop: 
                             1: Fare la gestione dello shop nella parte "admin".
                             2: Aggiungere anche la sezione di ordini effettuati. (Forse una struttura dati in più? verifica gli sweets)
                             3: Modificare il bottone "aggiungi al carrello" solo se si è loggati, mentre allo shop ci può accedere chiunque
+                            4: Importare la vista dello shop dal progetto vecchio
                         
                         Contatti:
                             1: Creare la pagina in cui solo se si è loggati si può accedere.
@@ -35,4 +37,13 @@
                         Generale:
                             1: Sistemare layout da Telefono (quando avrai finito tutto)
                             2: Sistemare i permessi tra utenti visitatori / utenti registrati / giornalisti / admin
+                            3: Sistemare visualizzazione da smartphone
+
+                        Javascript e Ajax:
+                            1: Come js posso fare la ricerca nelle varie tabelle, oltre ai controlli sugli input e il filtraggio delle tabelle (c'è un metodo di grid e row per il filtraggio)
+                            2: Come Ajax posso fare lo scorrimento delle notizie da "notizia precedente" a "notizia successiva" nelle viste notizia.show
+                            3: Implementare con Ajax tutte le eliminazioni: non serve creare una nuova pagina di conferma eliminazione!
+
+                        In più:
+                            1: Modificare lo stile di un po' di cose, renderlo più carino :)
                             

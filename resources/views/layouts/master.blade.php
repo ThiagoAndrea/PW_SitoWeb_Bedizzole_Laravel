@@ -68,6 +68,7 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link {{request() ->routeIs('notizie.index') ? 'active' : ''}}" href="{{route('notizie.index')}}">Notizie</a></li>
+                        <li class="nav-item"><a class="nav-link {{request() ->routeIs('showShop') ? 'active' : ''}}" href="{{route('showShop')}}">Shop</a></li>
                         
                     </ul>
                     <ul class="navbar-nav ms-auto">

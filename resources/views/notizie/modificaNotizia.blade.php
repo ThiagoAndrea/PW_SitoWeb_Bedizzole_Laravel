@@ -49,7 +49,7 @@
                 @endif
             </h5>
             @if(isset($notizia->id_notizia))
-            <form method="put" action="{{route('notizie.update', ['notizie' => $notizia->id_notizia])}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('notizie.update', ['notizie' => $notizia->id_notizia])}}" enctype="multipart/form-data">
                 @method('PUT')
             @else
             <form method="post" action="{{route('notizie.store')}}" enctype="multipart/form-data">
@@ -61,49 +61,34 @@
                 </div>
                 <div class="mb-3">
                     <div class="row">
-                        <div class="col-md-6">
-                            <label for="nome" class="form-label">Nome:</label>
-                            <input type="text" class="form-control" id="nome" name="nome" value="{{ isset($giocatore->nome) ? $giocatore->nome : '' }}" required>
-                            <span id="nome-invalido"></span>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <label for="cognome" class="form-label">Cognome:</label>
-                            <input type="text" class="form-control" id="cognome" name="cognome" value="{{ isset($giocatore->cognome) ? $giocatore->cognome : '' }}" required>
-                            <span id="cognome-invalido"></span>
-                        </div>
+                    <label for="testo">Testo:</label>
+                    <textarea class="form-control" id="testo" name="testo" rows="15" required>{{ isset($notizia->testo) ? $notizia->testo : '' }}</textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="data_di_nascita" class="form-label">Data di Nascita:</label>
-                            <input type="date" class="form-control" id="data_di_nascita" name="data_di_nascita" value="{{ isset($giocatore->data_di_nascita) ? $giocatore->data_di_nascita : '' }}" required>
+                            <label for="data" class="form-label">Data pubblicazione:</label>
+                            <input type="date" class="form-control" id="data" name="data" value="{{ isset($notizia->data) ? $notizia->data : '' }}" required>
                             <span id="data-invalida"></span>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="ruolo" class="form-label">Ruolo:</label>
-                            <select class="form-select" id="ruolo" name="ruolo" required>
-                                <option value="" disabled>Seleziona un ruolo</option>
-                                <option value="Portiere" {{ isset($giocatore->ruolo) && $giocatore->ruolo == 'Portiere' ? 'selected' : '' }}>Portiere</option>
-                                <option value="Difensore" {{ isset($giocatore->ruolo) && $giocatore->ruolo == 'Difensore' ? 'selected' : '' }}>Difensore</option>
-                                <option value="Centrocampista" {{ isset($giocatore->ruolo) && $giocatore->ruolo == 'Centrocampista' ? 'selected' : '' }}>Centrocampista</option>
-                                <option value="Attaccante" {{ isset($giocatore->ruolo) && $giocatore->ruolo == 'Attaccante' ? 'selected' : '' }}>Attaccante</option>
-                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="foto" class="form-label">Foto profilo:</label>
+                    <label for="foto" class="form-label">Foto notizia:</label>
                     <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+                    @if (isset($notizia) && $notizia->foto)
+                        <p>Immagine attuale: {{ $notizia->foto }}</p>
+                    @endif
                 </div>
+
                 <div class="d-flex justify-content-between">
-                    @if(isset($giocatore->id_giocatore) && $giocatore != null)
-                        <input type="hidden" name="id" value="{{ $giocatore->id_giocatore}}">
+                    @if(isset($notizia->id_notizia) && $notizia != null)
+                        <input type="hidden" name="id" value="{{$notizia->id_notizia}}">
                         <button type="button" class="btn btn-secondary">Annulla</button>
-                        <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkGiocatore()">Salva</button>
+                        <button type="submit" class="btn btn-success">Salva</button>
 
                     @else
                         <button type="button" class="btn btn-secondary">Annulla</button>
-                        <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkGiocatore()">Aggiungi</button>
+                        <button type="submit" class="btn btn-success">Aggiungi</button>
                     @endif
                 </div>
             </form>

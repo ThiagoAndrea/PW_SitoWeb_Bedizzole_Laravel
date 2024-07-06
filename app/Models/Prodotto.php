@@ -16,7 +16,7 @@ class Prodotto extends Model
    protected $fillable = ['descrizione', 'foto', 'prezzo'];
 
    public function taglie(){
-    return $this->belongsToMany(Taglia::class, 'TaglieProdotto', 'id_taglia', 'id_prodotto');
+    return $this->belongsToMany(Taglia::class, 'Taglie_prodotti', 'id_taglia', 'id_prodotto');
    }
 
    public function ordini(){

@@ -48,7 +48,7 @@ class GiocatoreController extends Controller
             return view('admin.modificaGiocatore')->with('logged', false)->with('squadre', $squadre);
         }
     }
-
+                                                                                                                                                                                           
     public function store(Request $request){
         session_start();
         $dl = new DataLayer();
