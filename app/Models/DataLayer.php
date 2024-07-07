@@ -24,27 +24,26 @@ class DataLayer extends Model
 {
     use HasFactory;
 
-    public function elencaGiocatori(){
+    public function elencaGiocatori()
+    {
         $giocatori = Giocatore::all();
         return $giocatori;
     }
 
-    public function elencaSquadre(){
+    public function elencaSquadre()
+    {
         $squadre = Squadra::all();
         return $squadre;
     }
 
-    public function elencaAllenatori(){
-        $allenatori = Allenatore::all();
-        return $allenatori;
-    }
-
-    public function eliminaGiocatore($id){
+    public function eliminaGiocatore($id)
+    {
         $giocatore = Giocatore::find($id);
         $giocatore->delete();
     }
 
-    public function modificaGiocatore($id, $request){
+    public function modificaGiocatore($id, $request)
+    {
         $request->validate([
             'nome' => 'required|string|max:255',
             'cognome' => 'required|string|max:255',
@@ -53,142 +52,178 @@ class DataLayer extends Model
             'ruolo' => 'required|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-    
+
         $giocatore = Giocatore::find($id);
         $giocatore->nome = $request->nome;
         $giocatore->cognome = $request->cognome;
         $giocatore->data_di_nascita = $request->data_di_nascita;
         $giocatore->id_squadra = $request->id_squadra;
         $giocatore->ruolo = $request->ruolo;
-    
+
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('img/giocatori'), $filename);
             $giocatore->foto = $filename;
         }
-    
+
         $giocatore->save();
     }
 
-    public function aggiungiGiocatore(Request $request){
-        
-            $request->validate([
-                'nome' => 'required|string|max:255',
-                'cognome' => 'required|string|max:255',
-                'data_di_nascita' => 'required|date',
-                'id_squadra' => 'required|integer',
-                'ruolo' => 'required|string|max:255',
-                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-            ]);
+    public function aggiungiGiocatore(Request $request)
+    {
 
-            $giocatore = new Giocatore;
-            $giocatore->nome = $request->nome;
-            $giocatore->cognome = $request->cognome;
-            $giocatore->data_di_nascita = $request->data_di_nascita;
-            $giocatore->id_squadra = $request->id_squadra;
-            $giocatore->ruolo = $request->ruolo;
-    
-            if ($request->hasFile('foto')) {
-                // Rimuove la vecchia foto se esiste
-                if ($giocatore->foto && File::exists(public_path('img/giocatori/' . $giocatore->foto))) {
-                    File::delete(public_path('img/giocatori/' . $giocatore->foto));
-                }
-                $file = $request->file('foto');
-                $filename = time() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('img/giocatori'), $filename);
-                $giocatore->foto = $filename;
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'cognome' => 'required|string|max:255',
+            'data_di_nascita' => 'required|date',
+            'id_squadra' => 'required|integer',
+            'ruolo' => 'required|string|max:255',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $giocatore = new Giocatore;
+        $giocatore->nome = $request->nome;
+        $giocatore->cognome = $request->cognome;
+        $giocatore->data_di_nascita = $request->data_di_nascita;
+        $giocatore->id_squadra = $request->id_squadra;
+        $giocatore->ruolo = $request->ruolo;
+
+        if ($request->hasFile('foto')) {
+            // Rimuove la vecchia foto se esiste
+            if ($giocatore->foto && File::exists(public_path('img/giocatori/' . $giocatore->foto))) {
+                File::delete(public_path('img/giocatori/' . $giocatore->foto));
             }
-    
-            $giocatore->save();
-    
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/giocatori'), $filename);
+            $giocatore->foto = $filename;
+        }
+
+        $giocatore->save();
+
     }
 
-    public function elencaProdotti(){
+    public function elencaProdotti()
+    {
         $prodotti = Prodotto::all();
         return $prodotti;
     }
 
-    public function trovaGiocatoreDaId($id){
+    public function trovaGiocatoreDaId($id)
+    {
         $giocatore = Giocatore::find($id);
         return $giocatore;
     }
 
-    public function trovaGiocatoriDaSquadra($id_squadra){
+    public function trovaGiocatoriDaSquadra($id_squadra)
+    {
         $giocatori = Giocatore::where('id_squadra', $id_squadra)->get();
         return $giocatori;
     }
 
-    public function trovaSquadraDaId($id_squadra){
+    public function trovaSquadraDaId($id_squadra)
+    {
         $squadra = Squadra::find($id_squadra);
         return $squadra;
     }
 
-    public function mostraCarrello($id_user){
+    public function mostraCarrello($id_user)
+    {
         $carrello = Carrello::where('id_user', $id_user)->get();
         return $carrello;
     }
 
-    public function trovaTaglia($id_taglia){
+    public function trovaTaglia($id_taglia)
+    {
         $taglia = Taglia::find($id_taglia);
         return $taglia;
     }
 
     public function elencaTaglieDaProdotto($id_prodotto)
-{
-    $prodotto = Prodotto::find($id_prodotto);
-    if ($prodotto) {
-        return $prodotto->taglie;
-    }
-    return collect();
-}
-
-    public function aggiungiProdotto($descrizione, $foto, $prezzo){
-        $prodotto = new Prodotto;
-        $prodotto->descrizione = $descrizione;
-        $prodotto->foto = $foto;
-        $prodotto->prezzo = $prezzo;
-        $prodotto->save();
-    }
-
-    public function aggiungiTagliaProdotto($id_prodotto, $taglie){
-        foreach($taglie as $taglia){
-            $taglia_prodotto = new Taglia;
-            $taglia_prodotto->id_prodotto = $id_prodotto;
-            $taglia_prodotto->taglia = $taglia;
-            $taglia_prodotto->save();
+    {
+        $prodotto = Prodotto::find($id_prodotto);
+        if ($prodotto) {
+            return $prodotto->taglie;
         }
+        return collect();
     }
 
-    public function modificaProdotto($id, $descrizione, $foto, $prezzo){
+    public function aggiungiProdotto(Request $request)
+    {
+        $prodotto = new Prodotto;
+        $prodotto->descrizione = $request->descrizione;
+        $prodotto->prezzo = floatval($request->prezzo);
+
+        if ($request->hasFile('foto')) {
+            if ($prodotto->foto && File::exists(public_path('img/shop/' . $prodotto->foto))) {
+                File::delete(public_path('img/notizie/' . $prodotto->foto));
+            }
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/shop'), $filename);
+            $prodotto->foto = $filename;
+        }
+        $prodotto->save();
+
+        $taglie = $request->input('taglie');
+        $prodotto->taglie()->attach($taglie);
+    }
+
+
+    public function modificaProdotto($id, $request)
+    {
         $prodotto = Prodotto::find($id);
-        $prodotto->descrizione = $descrizione;
-        $prodotto->foto = $foto;
-        $prodotto->prezzo = $prezzo;
+        $prodotto->descrizione = $request->descrizione;
+        $prodotto->prezzo = $request->prezzo;
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/shop'), $filename);
+            $prodotto->foto = $filename;
+        }
+
+        $taglie_selezionate = $request->input('taglie', []);
+        $prodotto->taglie()->detach();
+        if (!empty($taglie_selezionate)) {
+            $prodotto->taglie()->attach($taglie_selezionate);
+        }
+       
         $prodotto->save();
     }
 
-    public function trovaProdottoDaId($id){
+    public function eliminaProdotto($id)
+    {
+        $prodotto = Prodotto::find($id);
+        $prodotto->delete();
+    }
+
+    public function trovaProdottoDaId($id)
+    {
         $prodotto = Prodotto::find($id);
         return $prodotto;
     }
 
-    public function elencaTaglie(){
+    public function elencaTaglie()
+    {
         $taglie = Taglia::all();
         return $taglie;
     }
 
-    public function trovaTagliaDaProdotto($id_taglia, $id_prodotto){
+    public function trovaTagliaDaProdotto($id_taglia, $id_prodotto)
+    {
         $taglia = Taglia::where('id_taglia', $id_taglia)->where('id_prodotto', $id_prodotto)->first();
         return $taglia;
     }
 
-    public function modificaTaglieProdotto($id_prodotto, $nuoveTaglie){
+    public function modificaTaglieProdotto($id_prodotto, $nuoveTaglie)
+    {
         $taglie = Taglia::where('id_prodotto', $id_prodotto)->get();
-        foreach($taglie as $taglia){
+        foreach ($taglie as $taglia) {
             $taglia->delete();
         }
-        foreach($nuoveTaglie as $taglia){
+        foreach ($nuoveTaglie as $taglia) {
             $taglia_prodotto = new Taglia;
             $taglia_prodotto->id_prodotto = $id_prodotto;
             $taglia_prodotto->taglia = $taglia;
@@ -196,25 +231,27 @@ class DataLayer extends Model
         }
     }
 
-    public function utenteValido($email, $password){
-        
+    public function utenteValido($email, $password)
+    {
+
         $utente = Utente::where('email', $email)->first(['password', 'nome']);
-    
+
         if (!$utente) {
-            return false; 
+            return false;
         }
-    
-        
+
+
         if (md5($password) == $utente->password) {
             return $utente->nome;
         } else {
             return false;
         }
     }
-    
 
 
-    public function aggiungiUtente($email, $password, $nome, $cognome){
+
+    public function aggiungiUtente($email, $password, $nome, $cognome)
+    {
         $utente = new Utente;
         $utente->email = $email;
         $utente->password = md5($password);
@@ -223,7 +260,8 @@ class DataLayer extends Model
         $utente->save();
     }
 
-    public function trovaIdUtenteDaEmail($email){
+    public function trovaIdUtenteDaEmail($email)
+    {
         $utente = Utente::where('email', $email)->first();
         return $utente->id;
     }
@@ -232,7 +270,7 @@ class DataLayer extends Model
 
     public function elencaNotizie()
     {
-        $notizie = Notizia::orderBy('data', 'desc')->get(); // Ordina le notizie per data in ordine decrescente
+        $notizie = Notizia::orderBy('data', 'desc')->get(); // Ordina le notizie per data in ordine decrescente dalla più recente alla meno recente
         return $notizie;
     }
 
@@ -242,15 +280,15 @@ class DataLayer extends Model
         return $notizia;
     }
 
-    public function aggiungiNotizia(Request $request){
-        
+    public function aggiungiNotizia(Request $request)
+    {
+
         $notizia = new Notizia;
         $notizia->titolo = $request->titolo;
         $notizia->testo = $request->testo;
         $notizia->data = $request->data;
 
         if ($request->hasFile('foto')) {
-            // Rimuove la vecchia foto se esiste
             if ($notizia->foto && File::exists(public_path('img/notizie/' . $notizia->foto))) {
                 File::delete(public_path('img/notizie/' . $notizia->foto));
             }
@@ -263,27 +301,79 @@ class DataLayer extends Model
         $notizia->save();
     }
 
-    public function modificaNotizia($id, $request){
-           
+    public function modificaNotizia($id, $request)
+    {
+
         $notizia = Notizia::find($id);
         $notizia->titolo = $request->titolo;
         $notizia->testo = $request->testo;
         $notizia->data = $request->data;
-    
+
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('img/notizie'), $filename);
             $notizia->foto = $filename;
         }
-    
+
         $notizia->save();
     }
 
-    public function eliminaNotizia($id){
+    public function eliminaNotizia($id)
+    {
         $notizia = Notizia::find($id);
         $notizia->delete();
     }
+
+    //Funzioni per allenatori
+    public function elencaAllenatori()
+    {
+        $allenatori = Allenatore::all();
+        return $allenatori;
+    }
+
+    public function eliminaAllenatore($id){
+        $allenatore = Allenatore::find($id);
+        $allenatore->delete();
+    }
+
+    public function modificaAllenatore($id, $request)
+    {
+        $allenatore = Allenatore::find($id);
+        $allenatore->nome = $request->nome;
+        $allenatore->cognome = $request->cognome;
+        $allenatore->data_di_nascita = $request->data_di_nascita;
+        $allenatore->id_squadra = $request->id_squadra;
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/allenatori'), $filename);
+            $allenatore->foto = $filename;
+        }
+
+        $allenatore->save();
+    }
+
+    public function aggiungiAllenatore(Request $request)
+    {
+        $allenatore = new Allenatore;
+        $allenatore->nome = $request->nome;
+        $allenatore->cognome = $request->cognome;
+        $allenatore->data_di_nascita = $request->data_di_nascita;
+        $allenatore->id_squadra = $request->id_squadra;
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/allenatori'), $filename);
+            $allenatore->foto = $filename;
+        }
+
+        $allenatore->save();
+    }
+
+
 
 }
 

@@ -2,22 +2,6 @@
 
 @section('titolo_head', 'Registrazione - FC Bedizzole')
 
-
-@section('right_navbar')
-
-<li class="nav-item"><a class="nav-link" href="carrello.php"><iconify-icon icon="bi:cart-fill"></iconify-icon> Carrello</a></li>
-                        <li class="nav-item dropdown d-flex me-2">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-                                <li><a class="dropdown-item" href="{{route('giocatori.index')}}">Gestione Rose</a></li>
-                                <li><a class="dropdown-item" href="gestioneShop.php">Gestione Shop</a></li>
-                            </ul>
-                        </li>
-      
-@endsection
-
-
 @section('breadcrumb')
 <div class="container">
         <nav aria-label="breadcrumb" id="breadcrumb-nav">

@@ -33,4 +33,56 @@ class ProdottoController extends Controller
             return view('admin.gestioneShop')->with('logged', false)->with('prodotti', $prodotti)->with('squadre', $squadre);
         }
     }
+
+    public function store(Request $request)
+    {
+        session_start();
+        $dl = new DataLayer();
+        $dl -> aggiungiProdotto($request);
+        return redirect('admin/prodotti');
+    }
+
+    public function update(Request $request, $id_prodotto)
+    {
+        session_start();
+        $dl = new DataLayer();
+        $dl -> modificaProdotto($id_prodotto, $request);
+        return redirect('admin/prodotti');
+    }
+
+    public function edit($id_prodotto)
+    {
+        session_start();
+        $dl = new DataLayer();
+        $prodotto = $dl -> trovaProdottoDaId($id_prodotto);
+        $taglie = $dl -> elencaTaglie();
+        $squadre = $dl -> elencaSquadre();
+        if(isset($_SESSION['logged'])){
+            return view('admin.modificaProdotto')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('prodotto', $prodotto)->with('squadre', $squadre)->with('taglie', $taglie);
+        } else {
+            return view('admin.modificaProdotto')->with('logged', false)->with('prodotto', $prodotto)->with('squadre', $squadre)->with('taglie', $taglie);
+        }
+    }
+
+    public function create(){
+        session_start();
+        $dl = new DataLayer();
+        $squadre = $dl -> elencaSquadre();
+        $taglie = $dl -> elencaTaglie();
+        if(isset($_SESSION['logged'])){
+            return view('admin.modificaProdotto')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('squadre', $squadre)->with('taglie', $taglie);
+        } else {
+            return view('admin.modificaProdotto')->with('logged', false)->with('squadre', $squadre)->with('taglie', $taglie);
+        }
+    }
+
+    public function destroy($id_prodotto)
+    {
+        session_start();
+        $dl = new DataLayer();
+        $dl -> eliminaNotizia($id_prodotto);
+        return redirect('admin/prodotti');
+    }
+
+    
 }

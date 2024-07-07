@@ -93,16 +93,20 @@ class db_seed extends Seeder
         }
 
         Notizia::factory()->count(10)->create();
-        Prodotto::factory()->count(10)->create()->each(function($prodotto) {
-            // Selezionare un numero casuale di taglie (da 1 a 3)
-            $numTaglie = rand(1, 3);
+        Prodotto::factory()->count(10)->create();
 
-            // Recuperare un numero casuale di taglie e ottenere solo gli ID
-            $taglieIds = Taglia::inRandomOrder()->limit($numTaglie)->pluck('id_taglia');
-
-            // Associazione delle taglie al prodotto
-            $prodotto->taglie()->attach($taglieIds);
-        });
+         
+         $prodotti = Prodotto::all();
+         foreach ($prodotti as $prodotto) {
+            $numeroTaglie = rand(4, 7);
+            $taglie = Taglia::inRandomOrder()->limit($numeroTaglie)->get();
+            foreach ($taglie as $taglia) {
+                if (Taglia::find($taglia->id_taglia)) {
+                    $prodotto->taglie()->attach($taglia);
+                }
+            }
+        }
+        
 
 
         

@@ -13,17 +13,17 @@
                             2: Aggiungere alla vista delle squadre come con i giocatori.
 
                         Shop: 
-                            1: Fare la gestione dello shop nella parte "admin".
                             2: Aggiungere anche la sezione di ordini effettuati. (Forse una struttura dati in più? verifica gli sweets)
                             3: Modificare il bottone "aggiungi al carrello" solo se si è loggati, mentre allo shop ci può accedere chiunque
-                            4: Importare la vista dello shop dal progetto vecchio
+
+                        Carrello:
+                            1: Fare la vista
                         
                         Contatti:
                             1: Creare la pagina in cui solo se si è loggati si può accedere.
                             2: Possibilità di inviare la mail da loggati
                         
-                        Carrello:
-                            1: Fare la vista
+                        
 
                         Home:
                             1: Fare la vista con la pagina instagram per impostare il layout
@@ -37,7 +37,6 @@
                         Generale:
                             1: Sistemare layout da Telefono (quando avrai finito tutto)
                             2: Sistemare i permessi tra utenti visitatori / utenti registrati / giornalisti / admin
-                            3: Sistemare visualizzazione da smartphone
 
                         Javascript e Ajax:
                             1: Come js posso fare la ricerca nelle varie tabelle, oltre ai controlli sugli input e il filtraggio delle tabelle (c'è un metodo di grid e row per il filtraggio)

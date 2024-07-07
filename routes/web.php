@@ -7,6 +7,7 @@ use App\Http\Controllers\SquadraController;
 use App\Http\Controllers\GiocatoreController;
 use App\Http\Controllers\NotiziaController;
 use App\Http\Controllers\ProdottoController;
+use App\Http\Controllers\AllenatoreController;
 
 
 /*
@@ -49,6 +50,9 @@ Route::get('/shop', [ProdottoController::class, 'showShop'])->name('showShop');
 
 //Rotte per la gestione del negozio lato admin
 Route::resource('admin/prodotti', ProdottoController::class);
+
+//Rotte per la gestione degli allenatori 
+Route::resource('admin/allenatori', AllenatoreController::class);
 
 //Questo va in fondo alle rotte perché altrimenti si sovrappone
 Route::get('/{squadra}', [SquadraController::class, 'show']) -> name('squadra.show');

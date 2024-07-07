@@ -32,7 +32,7 @@
         <header class="intestazione">
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col text-center">
-                <img src="{{ asset('img/static/logo.png') }}" class="img-fluid img-header">
+                    <img src="{{ asset('img/static/logo.png') }}" class="img-fluid img-header">
 
                 </div>
                 <div class="col text-center">
@@ -46,7 +46,7 @@
     </div>
 
 
-     <div class="container">
+    <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -56,25 +56,48 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link {{request()->routeIs('home') ? 'active' : ''}}" aria-current="page" href="{{route('home')}}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link {{request()->routeIs('home') ? 'active' : ''}}"
+                                aria-current="page" href="{{route('home')}}">Home</a></li>
                         <li class="nav-item dropdown {{ request()->routeIs('squadra.show*') ? 'active' : '' }}">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Squadre</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Squadre</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @foreach ($squadre as $squadra)
                                     <li>
-                                        <a class="dropdown-item {{ request()->routeIs('squadre/'.$squadra->id_squadra) ? 'active' : '' }}" href="{{ route('squadra.show', $squadra->id_squadra) }}">{{ $squadra->nome }}</a>
+                                        <a class="dropdown-item {{ request()->routeIs('squadre/' . $squadra->id_squadra) ? 'active' : '' }}"
+                                            href="{{ route('squadra.show', $squadra->id_squadra) }}">{{ $squadra->nome }}</a>
                                     </li>
                                 @endforeach
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link {{request() ->routeIs('notizie.index') ? 'active' : ''}}" href="{{route('notizie.index')}}">Notizie</a></li>
-                        <li class="nav-item"><a class="nav-link {{request() ->routeIs('showShop') ? 'active' : ''}}" href="{{route('showShop')}}">Shop</a></li>
-                        
+                        <li class="nav-item"><a
+                                class="nav-link {{request()->routeIs('notizie.index') ? 'active' : ''}}"
+                                href="{{route('notizie.index')}}">Notizie</a></li>
+                        <li class="nav-item"><a class="nav-link {{request()->routeIs('showShop') ? 'active' : ''}}"
+                                href="{{route('showShop')}}">Shop</a></li>
+
                     </ul>
                     <ul class="navbar-nav ms-auto">
-                        @yield('right_navbar')
-                        </ul>
-                        </div>
+                        <li class="nav-item"><a class="nav-link" href="carrello.php"><iconify-icon
+                                    icon="bi:cart-fill"></iconify-icon>
+                                Carrello</a></li>
+                        <li class="nav-item dropdown d-flex me-2">
+                            <a class="nav-link dropdown-toggle {{request()->routeIs('giocatori.index') || request()->routeIs('prodotti.index') ? 'active' : ''}}" href="#" id="navbarDropdownAdmin" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                <li><a class="dropdown-item" href="{{route('giocatori.index')}}">Gestione Rose</a></li>
+                                <li><a class="dropdown-item" href="{{route("prodotti.index")}}">Gestione Shop</a></li>
+                                <li><a class="dropdown-item" href="{{route('allenatori.index')}}">Gestione Allenatori</a></li>
+                            </ul>
+                        </li>
+                        @if ($logged)
+                            <li class="nav-item"><a class="nav-link" href="#">{{ $loggedName }} </a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('user.logout') }}">Logout</a></li>
+                        @else
+                            <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}">Login</a></li>
+                        @endif
+                    </ul>
+                </div>
 
             </div>
         </nav>
@@ -131,4 +154,5 @@
 
     </div>
 </body>
+
 </html>
