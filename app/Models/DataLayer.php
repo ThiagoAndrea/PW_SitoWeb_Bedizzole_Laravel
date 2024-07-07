@@ -325,6 +325,7 @@ class DataLayer extends Model
         $notizia->delete();
     }
 
+
     //Funzioni per allenatori
     public function elencaAllenatori()
     {

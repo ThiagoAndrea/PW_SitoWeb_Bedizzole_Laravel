@@ -14,12 +14,13 @@ class FrontController extends Controller
         session_start();
         $dl = new DataLayer();
         $squadre = $dl -> elencaSquadre();
+        $notizie = $dl -> elencaNotizie();
         if(isset($_SESSION['logged'])){
-            return view('home')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('squadre', $squadre);
+            return view('home')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('squadre', $squadre)->with('notizie', $notizie);
         }
             
         else
-        return view('home')->with('logged', false)->with('squadre', $squadre);
+        return view('home')->with('logged', false)->with('squadre', $squadre)->with('notizie', $notizie);
         
     }
 }

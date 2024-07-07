@@ -347,3 +347,57 @@ footer div h3 {
     font-style: bold;
     padding: 1%;
 }
+
+.intestazione-notizie{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.container-notizie-home{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 3%;
+}
+
+.container-notizie-home a{
+    text-decoration: none;
+    color: black;
+}
+
+.anchor-ultime-notizie {
+    text-transform: uppercase;
+}
+
+
+.img-notizie {
+    width: 100%;
+    height: 300px; /* Specifica l'altezza desiderata */
+    object-fit: cover; /* Taglia l'immagine per riempire l'area */
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.full-height {
+    height: 100%; /* Altezza del 100% rispetto al contenitore genitore */
+    display: flex; /* Usiamo flexbox per gestire il layout */
+    flex-direction: column; /* Colonne, per disporre i figli in verticale */
+}
+
+
+.full-height .row {
+    flex: 1; /* Flessibilità: i figli espandono per occupare lo stesso spazio */
+    background-color: #8b2b12;
+    border-radius: 10px; /* Opzionale: margine inferiore per separare i figli */
+}
+
+.full-height .row:hover {
+    background-color: #661e0c;
+}
+
+.full-height .row:last-child {
+    margin-bottom: 15px;
+}
+
+
