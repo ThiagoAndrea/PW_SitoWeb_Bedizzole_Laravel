@@ -4,13 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use  App\Models\Squadra;
-use  App\Models\Giocatore;
-use  App\Models\Taglia;
+use App\Models\Squadra;
+use App\Models\Giocatore;
+use App\Models\Taglia;
 use App\Models\Utente;
 use App\Models\DataLayer;
 use App\Models\Notizia;
 use App\Models\Prodotto;
+use App\Models\Allenatore;
 
 class db_seed extends Seeder
 {
@@ -84,20 +85,20 @@ class db_seed extends Seeder
             'taglia' => 'XL',
         ]);
 
-        
+
         $dl = new DataLayer();
         $squadre = $dl->elencaSquadre();
 
-        foreach($squadre as $squadra){
-            Giocatore::factory()->count(rand(10,20))->create(['id_squadra' => $squadra->id_squadra]);
+        foreach ($squadre as $squadra) {
+            Giocatore::factory()->count(rand(10, 20))->create(['id_squadra' => $squadra->id_squadra]);
         }
 
         Notizia::factory()->count(10)->create();
         Prodotto::factory()->count(10)->create();
 
-         
-         $prodotti = Prodotto::all();
-         foreach ($prodotti as $prodotto) {
+
+        $prodotti = Prodotto::all();
+        foreach ($prodotti as $prodotto) {
             $numeroTaglie = rand(4, 7);
             $taglie = Taglia::inRandomOrder()->limit($numeroTaglie)->get();
             foreach ($taglie as $taglia) {
@@ -106,9 +107,29 @@ class db_seed extends Seeder
                 }
             }
         }
-        
+
+        Allenatore::factory()->count(10)->create();
+
+        $allenatori = Allenatore::all();
+        foreach ($allenatori as $allenatore) {
+            if ($allenatore->squadre()->count() == 0) {
+                $squadra = Squadra::inRandomOrder()->first();
+                $allenatore->squadre()->attach($squadra);
+            }
+        }
+
+        $squadre = Squadra::all();
+        foreach ($squadre as $squadra) {
+            $allenatori = Allenatore::inRandomOrder()->limit(rand(1, 2))->get();
+            foreach ($allenatori as $allenatore) {
+                if (Allenatore::find($allenatore->id_allenatore)) {
+                    $allenatore->squadre()->attach($squadra);
+                }
+            }
+        }
 
 
-        
+
+
     }
 }

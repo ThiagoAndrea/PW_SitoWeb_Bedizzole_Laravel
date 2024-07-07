@@ -27,7 +27,6 @@
     <div class="container">
         <section id="rosa-giocatori">
             <div class="row">
-
                 @foreach ($listaGiocatori as $giocatore)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                         <div class="immagineProdotto cardGiocatore">
@@ -41,6 +40,24 @@
                                 <li>Data di nascita:<h4>{{ $giocatore->data_di_nascita }}</h4>
                                 </li>
                                 <li>Ruolo:<h4>{{ $giocatore->ruolo }}</h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @endforeach
+                @foreach ($listaAllenatori as $allenatore)
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="immagineProdotto cardAllenatore">
+                            <img src="{{ asset('img/allenatore/' . $allenatore->foto) }}" class="img-fluid">
+                            <h4 class="datiGiocatore">{{ $allenatore->nome }} {{ $allenatore->cognome }}</h4>
+                            <ul class="datiNascosti">
+                                <li>Nome:<h4>{{ $allenatore->nome }}</h4>
+                                </li>
+                                <li>Cognome:<h4>{{ $allenatore->cognome }}</h4>
+                                </li>
+                                <li>Data di nascita:<h4>{{ $allenatore->data_di_nascita }}</h4>
+                                </li>
+                                <li>Ruolo:<h4>Allenatore</h4>
                                 </li>
                             </ul>
                         </div>

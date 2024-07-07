@@ -133,7 +133,49 @@
     opacity: 1;
     
 }
+.cardAllenatore {
+    border: 1px solid black;
+    border-radius: 10px;
+    position: relative;
+    padding: 2px;
+    margin-bottom: 20px;
+}
 
+.cardAllenatore img {
+    transition: opacity 0.5s;
+}
+
+.cardAllenatore:hover img {
+    opacity: 0;
+}
+
+.cardAllenatore .datiGiocatore{
+    transition: opacity 0.5s;
+}
+.cardAllenatore:hover .datiGiocatore {
+    opacity: 0;
+}
+
+.cardAllenatore .datiNascosti {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    color: #661e0c;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+    padding: 0;
+    margin-top: 40px;
+}
+
+
+.cardAllenatore:hover .datiNascosti {
+    opacity: 1;
+    
+}
 .datiGiocatore{
     color: black;
     text-align: center;

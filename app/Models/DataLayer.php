@@ -343,7 +343,6 @@ class DataLayer extends Model
         $allenatore->nome = $request->nome;
         $allenatore->cognome = $request->cognome;
         $allenatore->data_di_nascita = $request->data_di_nascita;
-        $allenatore->id_squadra = $request->id_squadra;
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
@@ -351,7 +350,11 @@ class DataLayer extends Model
             $file->move(public_path('img/allenatori'), $filename);
             $allenatore->foto = $filename;
         }
-
+        $squadre_selezionate = $request->input('squadre', []);
+        $allenatore->squadre()->detach();
+        if (!empty($squadre_selezionate)) {
+            $allenatore->squadre()->attach($squadre_selezionate);
+        }
         $allenatore->save();
     }
 
@@ -361,7 +364,6 @@ class DataLayer extends Model
         $allenatore->nome = $request->nome;
         $allenatore->cognome = $request->cognome;
         $allenatore->data_di_nascita = $request->data_di_nascita;
-        $allenatore->id_squadra = $request->id_squadra;
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
@@ -371,6 +373,22 @@ class DataLayer extends Model
         }
 
         $allenatore->save();
+        $squadre = $request->input('squadre');
+        $allenatore->squadre()->attach($squadre);
+    }
+
+    public function trovaAllenatoriDaSquadra($id_squadra)
+    {
+        $squadra = Squadra::find($id_squadra);
+        $allenatori = $squadra->allenatori;
+        return $allenatori;
+
+    }
+
+    public function trovaAllenatoreDaId($id)
+    {
+        $allenatore = Allenatore::find($id);
+        return $allenatore;
     }
 
 
