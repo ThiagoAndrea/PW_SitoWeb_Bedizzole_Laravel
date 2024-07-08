@@ -366,34 +366,47 @@ footer div h3 {
 }
 
 .anchor-ultime-notizie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-transform: uppercase;
+}
+
+.anchor-ultime-notizie:hover {
+    text-decoration: none;
+    color: #661e0c;
 }
 
 
 .img-notizie {
     width: 100%;
-    height: 300px; /* Specifica l'altezza desiderata */
-    object-fit: cover; /* Taglia l'immagine per riempire l'area */
+    height: 300px;
+    object-fit: cover; 
     border-radius: 10px;
     margin-bottom: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .full-height {
-    height: 100%; /* Altezza del 100% rispetto al contenitore genitore */
-    display: flex; /* Usiamo flexbox per gestire il layout */
-    flex-direction: column; /* Colonne, per disporre i figli in verticale */
+    height: 100%; 
+    display: flex; 
+    flex-direction: column;
+     
 }
+
 
 
 .full-height .row {
-    flex: 1; /* Flessibilità: i figli espandono per occupare lo stesso spazio */
-    background-color: #8b2b12;
-    border-radius: 10px; /* Opzionale: margine inferiore per separare i figli */
+    flex: 1; 
+    background-color: #ddd;
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .full-height .row:hover {
-    background-color: #661e0c;
+    background-color: #8b2a12c9;
 }
 
 .full-height .row:last-child {
@@ -401,3 +414,7 @@ footer div h3 {
 }
 
 
+#map {
+    height: 400px; /* Altezza desiderata della mappa */
+    width: 100%;   /* Larghezza piena del contenitore */
+}

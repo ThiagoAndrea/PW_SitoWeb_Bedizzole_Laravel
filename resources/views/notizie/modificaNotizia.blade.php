@@ -39,11 +39,13 @@
                 <div class="mb-3">
                     <label for="titolo" class="form-label">Titolo:</label>
                     <input type="text" class="form-control" id="titolo" name="titolo" value="{{ isset($notizia->titolo) ? $notizia->titolo : '' }}" required>
+                    <span id="titolo-invalido"></span>
                 </div>
                 <div class="mb-3">
                     <div class="row">
                     <label for="testo">Testo:</label>
                     <textarea class="form-control" id="testo" name="testo" rows="15" required>{{ isset($notizia->testo) ? $notizia->testo : '' }}</textarea>
+                    <span id="testo-invalido"></span>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -65,11 +67,11 @@
                     @if(isset($notizia->id_notizia) && $notizia != null)
                         <input type="hidden" name="id" value="{{$notizia->id_notizia}}">
                         <button type="button" class="btn btn-secondary">Annulla</button>
-                        <button type="submit" class="btn btn-success">Salva</button>
+                        <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkNotizia()">Salva</button>
 
                     @else
                         <button type="button" class="btn btn-secondary">Annulla</button>
-                        <button type="submit" class="btn btn-success">Aggiungi</button>
+                        <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkNotizia()">Aggiungi</button>
                     @endif
                 </div>
             </form>

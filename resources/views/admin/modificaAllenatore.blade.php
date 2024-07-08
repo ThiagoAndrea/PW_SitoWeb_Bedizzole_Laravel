@@ -44,11 +44,13 @@
                         <label for="nome" class="form-label">Nome:</label>
                         <input type="text" class="form-control" id="nome" name="nome"
                             value="{{ isset($allenatore->nome) ? $allenatore->nome : '' }}" required>
+                            <span id="nome-invalido"></span>
                     </div>
                     <div class="col-md-6">
                         <label for="cognome" class="form-label">Cognome:</label>
                         <input type="text" class="form-control" id="cognome" name="cognome"
                             value="{{ isset($allenatore->cognome) ? $allenatore->cognome : '' }}" required>
+                            <span id="cognome-invalido"></span>
                 </div>
             </div>
             <div class="mb-3">
@@ -64,18 +66,20 @@
                                     <input class="form-check-input" type="checkbox" name="squadre[]"
                                         id="squadra{{ $squadra->id_squadra }}" value="{{ $squadra->id_squadra }}">
                                 @endif
-                                <label class="form-check-label" for="taglia{{ $squadra->id_squadra }}">
+                                <label class="form-check-label" for="squadra{{ $squadra->id_squadra }}">
                                     {{ $squadra->nome }}
                                 </label>
                             </div>
                         </div>
                     @endforeach
+                    <span id="squadre-invalide" class="error-span"></span>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="data_di_nascita" class="form-label">Data di nascita:</label>
                 <input type="date" class="form-control" id="data_di_nascita" name="data_di_nascita"
                     value="{{ isset($allenatore->data_di_nascita) ? $allenatore->data_di_nascita : '' }}" required>
+                    <span id="data-invalida"></span>
             </div>
             <div class="mb-3">
                 <label for="foto" class="form-label">Foto allenatore:</label>
@@ -89,11 +93,11 @@
                 @if(isset($allenatore->id_allenatore) && $allenatore != null)
                     <input type="hidden" name="id" value="{{$allenatore->id_allenatore}}">
                     <button type="button" class="btn btn-secondary">Annulla</button>
-                    <button type="submit" class="btn btn-success">Salva</button>
+                    <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkAllenatore()">Salva</button>
 
                 @else
                     <button type="button" class="btn btn-secondary">Annulla</button>
-                    <button type="submit" class="btn btn-success">Aggiungi</button>
+                    <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkAllenatore()">Aggiungi</button>
                 @endif
             </div>
         </form>

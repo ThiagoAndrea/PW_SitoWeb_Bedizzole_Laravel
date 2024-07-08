@@ -8,7 +8,7 @@ use App\Models\Giocatore;
 use App\Models\Prodotto;
 use App\Models\Squadra;
 use App\Models\Taglia;
-use App\Models\User;
+use App\Models\Dettaglio;
 use App\Models\Utente;
 
 use Illuminate\Http\Request;
@@ -232,20 +232,21 @@ class DataLayer extends Model
     }
 
     public function utenteValido($email, $password)
-    {
-
-        $utente = Utente::where('email', $email)->first(['password', 'nome']);
-
+    {$utente = Utente::where('email', $email)->first(['password', 'nome']);
         if (!$utente) {
             return false;
         }
-
-
         if (md5($password) == $utente->password) {
             return $utente->nome;
         } else {
             return false;
         }
+    }
+
+    public function trovaIdUtente($email)
+    {
+        $utente = Utente::where('email', $email)->first();
+        return $utente->id_user;
     }
 
 
@@ -263,7 +264,7 @@ class DataLayer extends Model
     public function trovaIdUtenteDaEmail($email)
     {
         $utente = Utente::where('email', $email)->first();
-        return $utente->id;
+        return $utente->id_user;
     }
 
     //Funzioni per le notizie
@@ -390,6 +391,38 @@ class DataLayer extends Model
     {
         $allenatore = Allenatore::find($id);
         return $allenatore;
+    }
+
+    public function trovaCarrelloDaIdUtente($id)
+    {
+        $carrello = Carrello::where('id_user', $id)->first();
+        return $carrello;
+    }
+
+    public function elencaDettagliCarrello($id_carrello){
+        $dettagli = Dettaglio::where('id_carrello', $id_carrello)->get();
+        return $dettagli;
+    }
+
+    public function eliminaDettaglio($id){
+        $dettaglio = Dettaglio::find($id);
+        $dettaglio->delete();
+    }
+
+    public function modificaDettaglio($id, $request){
+        $dettaglio = Dettaglio::find($id);
+        $dettaglio->quantita = $request->quantita;
+        $dettaglio->id_taglia = $request->id_taglia;
+        $dettaglio->save();
+    }
+
+    public function aggiungiDettaglio($request){
+        $dettaglio = new Dettaglio;
+        $dettaglio->id_carrello = $request->id_carrello;
+        $dettaglio->id_prodotto = $request->id_prodotto;
+        $dettaglio->quantita = $request->quantita;
+        $dettaglio->id_taglia = $request->id_taglia;
+        $dettaglio->save();
     }
 
 

@@ -13,18 +13,15 @@ class Ordine extends Model
     protected $table = 'ordini';
     protected $primaryKey = 'id_ordine';
  
-    protected $fillable = ['id_prodotto', 'id_taglia', 'quantità'];
+    protected $fillable = ['id_user', 'data_ordine', 'lista_prodotti'];
  
-    public function prodotto(){
-     return $this->belongsTo(Prodotto::class,'id_prodotto');
-    }
- 
-    public function taglia(){
-        return $this->belongsTo(Taglia::class,'id_taglia');
+    public function utente(){
+     return $this->belongsTo(Utente::class, 'id_user');
     }
 
-    public function carrello(){
-        return $this->belongsTo(Carrello::class,'id_carrello');
+    public function dettagli(){
+     return $this->hasMany(Dettaglio::class, 'id_ordine');
     }
+
  
 }

@@ -49,6 +49,7 @@
                         <option value="2" {{ isset($giocatore->id_squadra) && $giocatore->id_squadra == 2 ? 'selected' : '' }}>Piccoli Amici U9</option>
                         <option value="1" {{ isset($giocatore->id_squadra) && $giocatore->id_squadra == 1 ? 'selected' : '' }}>Scuola Calcio</option>
                     </select>
+                    <span id="squadra-invalida" class="error-span"></span>
                 </div>
                 <div class="mb-3">
                     <div class="row">

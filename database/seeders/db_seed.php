@@ -12,6 +12,8 @@ use App\Models\DataLayer;
 use App\Models\Notizia;
 use App\Models\Prodotto;
 use App\Models\Allenatore;
+use App\Models\Carrello;
+use App\Models\Dettaglio;
 
 class db_seed extends Seeder
 {
@@ -125,6 +127,27 @@ class db_seed extends Seeder
                 if (Allenatore::find($allenatore->id_allenatore)) {
                     $allenatore->squadre()->attach($squadra);
                 }
+            }
+        }
+
+        $utenti = Utente::all();
+        foreach ($utenti as $utente) {
+            Carrello::create([
+                'id_user' => $utente->id_user,
+            ]);
+        }
+
+        $carrelli = Carrello::all();
+        foreach($carrelli as $carrello){
+            $prodotti = Prodotto::inRandomOrder()->limit(rand(1, 5))->get();
+            foreach($prodotti as $prodotto){
+                $taglia = Taglia::inRandomOrder()->first();
+                Dettaglio::create([
+                    'id_carrello' => $carrello->id_carrello,
+                    'id_prodotto' => $prodotto->id_prodotto,
+                    'quantita' => rand(1, 5),
+                    'id_taglia' => $taglia->id_taglia,
+                ]);
             }
         }
 

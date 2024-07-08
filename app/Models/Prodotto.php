@@ -19,9 +19,10 @@ class Prodotto extends Model
     return $this->belongsToMany(Taglia::class, 'taglie_prodotti', 'id_prodotto', 'id_taglia');
    }
 
-   public function ordini(){
-    return $this->hasMany(Ordine::class,'id_prodotto');
+   public function dettagli(){
+    return $this->hasMany(Dettaglio::class, 'id_prodotto');
    }
+
 
 
 }

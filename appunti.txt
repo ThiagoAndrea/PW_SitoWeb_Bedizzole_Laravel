@@ -1,6 +1,4 @@
-                        
-                        <li class="nav-item"><a class="nav-link {{request() ->routeIs('modulistica.index') ? 'active' : ''}}" href="{{route('modulistica.index')}}">Modulistica</a></li>
-                        <li class="nav-item"><a class="nav-link {{request() ->routeIs('contatti.index') ? 'active' : ''}}" href="{{route('contatti.index')}}">Contatti</a></li>
+                       <li class="nav-item"><a class="nav-link {{request() ->routeIs('modulistica.index') ? 'active' : ''}}" href="{{route('modulistica.index')}}">Modulistica</a></li>
 
                         Passi per le prossime  cose da fare:
                         
@@ -8,20 +6,16 @@
                             1: Creare la vista php, si può accedere solo se si è loggati, come al carrello.
                             2: Fare in modo che l'utente loggato possa scaricare i moduli e anche caricarli? Se può anche caricarli devo salvarli e controllarli da qualche parte
     
-
                         Shop: 
                             2: Aggiungere anche la sezione di ordini effettuati. (Forse una struttura dati in più? verifica gli sweets)
                             3: Modificare il bottone "aggiungi al carrello" solo se si è loggati, mentre allo shop ci può accedere chiunque
-
-                        Carrello:
-                            1: Fare la vista
                         
                         Contatti:
-                            1: Creare la pagina in cui solo se si è loggati si può accedere.
+                            1: Creare la pagina.
                             2: Possibilità di inviare la mail da loggati
                             
                         Home:
-                            1: Fare la vista con la pagina instagram per impostare il layout
+                            1: Fare la vista
 
                         Login:
                             1: Possibilità di modificare il proprio profilo e password
@@ -36,7 +30,7 @@
                         Javascript e Ajax:
                             1: Come js posso fare la ricerca nelle varie tabelle, oltre ai controlli sugli input e il filtraggio delle tabelle (c'è un metodo di grid e row per il filtraggio)
                             2: Come Ajax posso fare lo scorrimento delle notizie da "notizia precedente" a "notizia successiva" nelle viste notizia.show
-                            3: Implementare con Ajax tutte le eliminazioni: non serve creare una nuova pagina di conferma eliminazione!
+                            3: Implementare con Ajax tutte le eliminazioni: non serve creare una nuova pagina di conferma eliminazione! Controlla anche la rimozione di un dettaglio dal carrello.
 
                         In più:
                             1: Modificare lo stile di un po' di cose, renderlo più carino :)

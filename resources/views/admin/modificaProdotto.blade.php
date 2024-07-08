@@ -44,11 +44,13 @@
                         <label for="descrizione" class="form-label">Descrizione:</label>
                         <input type="text" class="form-control" id="descrizione" name="descrizione"
                             value="{{ isset($prodotto->descrizione) ? $prodotto->descrizione : '' }}" required>
+                            <span id="descrizione-invalida" class="error-span"></span>
                     </div>
                     <div class="col-md-6">
                         <label for="prezzo" class="form-label">Prezzo:</label>
                         <input type="text" class="form-control" id="prezzo" name="prezzo"
                             value="{{ isset($prodotto->prezzo) ? $prodotto->prezzo : '' }}" required>
+                            <span id="prezzo-invalido" class="error-span"></span>
                 </div>
             </div>
             <div class="mb-3">
@@ -70,6 +72,7 @@
                             </div>
                         </div>
                     @endforeach
+                    <span id="taglie-invalide" class="error-span"></span>
                 </div>
             </div>
             <div class="mb-3">
@@ -84,11 +87,11 @@
                 @if(isset($prodotto->id_prodotto) && $prodotto != null)
                     <input type="hidden" name="id" value="{{$prodotto->id_prodotto}}">
                     <button type="button" class="btn btn-secondary">Annulla</button>
-                    <button type="submit" class="btn btn-success">Salva</button>
+                    <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkProdotto()">Salva</button>
 
                 @else
                     <button type="button" class="btn btn-secondary">Annulla</button>
-                    <button type="submit" class="btn btn-success">Aggiungi</button>
+                    <button type="submit" class="btn btn-success" onclick="event.preventDefault(); checkProdotto()">Aggiungi</button>
                 @endif
             </div>
         </form>

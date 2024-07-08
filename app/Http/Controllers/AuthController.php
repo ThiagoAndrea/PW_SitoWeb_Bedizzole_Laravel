@@ -12,7 +12,7 @@ class AuthController extends Controller
     {
         $dl = new DataLayer();
         $squadre = $dl->elencaSquadre();
-        return view('auth.login')->with('squadre', $squadre);
+        return view('auth.login')->with('squadre', $squadre)->with('logged', false);
     }
 
     public function postLogin(Request $request)
@@ -20,10 +20,12 @@ class AuthController extends Controller
        session_start();
        $dl = new DataLayer();
        $nome_utente = $dl->utenteValido($request->input('email'), $request->input('password'));
+       $id_utente = $dl->trovaIdUtente($request->input('email'));
        if($nome_utente != null){
         $_SESSION['logged']=true;
         $_SESSION['loggedName'] = $nome_utente;
-        return Redirect::to(route('home'))->with('logged', true)->with('loggedName', $nome_utente);
+        $_SESSION['loggedId'] = $id_utente;
+        return Redirect::to(route('home'))->with('logged', true)->with('loggedName', $nome_utente)->with('loggedId', $id_utente);
 
     } else
         return 'error';

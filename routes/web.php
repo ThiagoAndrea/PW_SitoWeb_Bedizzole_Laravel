@@ -8,6 +8,7 @@ use App\Http\Controllers\GiocatoreController;
 use App\Http\Controllers\NotiziaController;
 use App\Http\Controllers\ProdottoController;
 use App\Http\Controllers\AllenatoreController;
+use App\Http\Controllers\CarrelloController;
 
 
 /*
@@ -22,6 +23,7 @@ use App\Http\Controllers\AllenatoreController;
 */
 
 Route::get('/', [FrontController::class, 'getHome'])->name('home');
+Route::get('/contatti', [FrontController::class, 'showContatti'])->name('showContatti');
 
 Route::get('user/login', [AuthController::class, 'getLogin'])->name('user.login');
 Route::post('user/login', [AuthController::class, 'postLogin']);
@@ -48,11 +50,18 @@ Route::get('/giornalista', [NotiziaController::class, 'getGiornalista'])->name('
 //Rotta per lo shop
 Route::get('/shop', [ProdottoController::class, 'showShop'])->name('showShop');
 
+//Rotta per il carrello
+Route::get('/carrello', [CarrelloController::class, 'show'])->name('carrello.show');
+Route::delete('/carrello/{id_dettaglio}', [CarrelloController::class, 'destroy'])->name('dettaglio.destroy');
+
 //Rotte per la gestione del negozio lato admin
 Route::resource('admin/prodotti', ProdottoController::class);
 
 //Rotte per la gestione degli allenatori 
 Route::resource('admin/allenatori', AllenatoreController::class);
+
+
+
 
 //Questo va in fondo alle rotte perché altrimenti si sovrappone
 Route::get('/{squadra}', [SquadraController::class, 'show']) -> name('squadra.show');
