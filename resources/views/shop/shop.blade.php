@@ -29,11 +29,21 @@
 
 @section('contenuto')
 
+<div class="container">
+    <div class="container container-ricerca">
+        <div class="row justify-content-end">
+            <div class="col-md-3">
+                <input type="text" id="searchInput_shop" class="form-control" placeholder="Cerca...">
+            </div>
+        </div>
+    </div>
+</div>
+
     <div class="container">
         <div class="row">
 
             @foreach ($prodotti as $prodotto)
-                <div class="col-lg-4 col-sm-6 col-12">
+                <div class="col-lg-4 col-sm-6 col-12 selettore-ricerca">
                     <div class="prodotto-shop">
                         <div class="immagineProdotto">
                             <img src="{{ asset('img/shop/' . $prodotto->foto) }}" class="img-fluid">

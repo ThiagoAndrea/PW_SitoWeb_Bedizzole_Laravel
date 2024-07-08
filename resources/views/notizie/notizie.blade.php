@@ -34,13 +34,10 @@
     @endif
 
     <div class="container">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Cerca...">
-                </div>
-                <div class="col-md-1">
-                    <button id="searchButton" class="btn btn-primary">Cerca</button>
+        <div class="container container-ricerca">
+            <div class="row justify-content-end">
+                <div class="col-md-3">
+                    <input type="text" id="searchInput_notizie" class="form-control" placeholder="Cerca...">
                 </div>
             </div>
         </div>

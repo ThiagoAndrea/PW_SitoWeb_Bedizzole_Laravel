@@ -418,3 +418,8 @@ footer div h3 {
     height: 400px; /* Altezza desiderata della mappa */
     width: 100%;   /* Larghezza piena del contenitore */
 }
+
+.container-ricerca{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}

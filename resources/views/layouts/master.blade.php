@@ -18,7 +18,8 @@
     <!-- jQuery e plugin JavaScript  -->
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="{{asset('js/bootstrap.min.js')}}js/bootstrap.min.js"></script>
-    <script src="{{asset('js/checkAdminForms.js')}}"></script>
+    <script src="{{asset('js/CheckAdminForms.js')}}"></script>
+    <script src="{{asset('js/Search.js')}}"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

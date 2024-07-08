@@ -1,26 +1,80 @@
 // Assicurati che il DOM sia pronto per l'esecuzione dello script
 document.addEventListener('DOMContentLoaded', function() {
-    // Seleziona l'input di ricerca
-    const searchInput = document.getElementById('searchInput');
     
-    // Aggiungi un event listener per l'evento di input
+    const searchInput = document.getElementById('searchInput_notizie');
     searchInput.addEventListener('input', function() {
-        // Ottieni il valore dell'input di ricerca
         const searchText = searchInput.value.toLowerCase().trim();
-        
-        // Seleziona tutte le notizie
         const notizie = document.querySelectorAll('.container-notizia');
         
-        // Itera su ogni notizia e mostra/nascondi in base al testo cercato
         notizie.forEach(function(notizia) {
-            // Seleziona il titolo della notizia
             const titolo = notizia.querySelector('h3').textContent.toLowerCase();
-            
-            // Controlla se il titolo contiene il testo cercato
+    
             if (titolo.includes(searchText)) {
-                notizia.style.display = 'block';  // Mostra la notizia se corrisponde
+                notizia.style.display = 'block';
             } else {
-                notizia.style.display = 'none';   // Nascondi la notizia se non corrisponde
+                notizia.style.display = 'none';
+            }
+        });
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const searchInput = document.getElementById('searchInput_shop');
+    searchInput.addEventListener('input', function() {
+        const searchText = searchInput.value.toLowerCase().trim();
+        const prodotto = document.querySelectorAll('.selettore-ricerca');
+        
+        prodotto.forEach(function(prodotto) {
+            const titolo = prodotto.querySelector('h3').textContent.toLowerCase();
+    
+            if (titolo.includes(searchText)) {
+                prodotto.style.display = 'block';
+            } else {
+                prodotto.style.display = 'none';
+            }
+        });
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const searchInput = document.getElementById('searchInput_allenatori');
+    searchInput.addEventListener('input', function() {
+        const searchText = searchInput.value.toLowerCase().trim();
+        const allenatore = document.querySelectorAll('.selettore-ricerca');
+        
+        allenatore.forEach(function(allenatore) {
+            const nome = allenatore.querySelector('.nome').textContent.toLowerCase();
+            const cognome = allenatore.querySelector('.cognome').textContent.toLowerCase();
+            const fullName = nome + ' ' + cognome;
+            
+            if (fullName.includes(searchText)) {
+                allenatore.style.display = 'flex';
+            } else {
+                allenatore.style.display = 'none';
+            }
+        });
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const searchInput = document.getElementById('searchInput_prodotti');
+    searchInput.addEventListener('input', function() {
+        const searchText = searchInput.value.toLowerCase().trim();
+        const prodotto = document.querySelectorAll('.selettore-ricerca');
+        
+        prodotto.forEach(function(prodotto) {
+            const descrizione = prodotto.querySelector('.descrizione').textContent.toLowerCase();
+            
+            if (descrizione.includes(searchText)) {
+                prodotto.style.display = 'flex';
+            } else {
+                prodotto.style.display = 'none';
             }
         });
     });
