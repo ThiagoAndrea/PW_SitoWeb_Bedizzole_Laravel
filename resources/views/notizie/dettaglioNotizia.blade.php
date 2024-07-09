@@ -38,7 +38,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-md-8 d-flex justify-content-between">
+            <div class="col-md-8 d-flex justify-content-between scorrimento-notizie">
                 
                 <div class="d-flex flex-column">
                     @if ($notizia_precedente)

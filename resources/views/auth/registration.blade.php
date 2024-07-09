@@ -40,21 +40,22 @@
                         </div>
                         <div class="row d-flex justify-content-center">
                             <div class="mb-3 col-md-7">
-                                <input class="shadow form-control col-6" type="email" name="email"
-                                    placeholder="Email" id="email" />
+                                <input class="shadow form-control col-6" type="email" name="email" placeholder="Email"
+                                    id="email" />
                                 <span class="error-span" id="email-invalida"></span>
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center">
                             <div class="mb-3 col-md-7">
-                                <input class="shadow form-control" type="password" name="password" id="password" placeholder="Password" />
+                                <input class="shadow form-control" type="password" name="password" id="password"
+                                    placeholder="Password" />
                                 <span class="error-span" id="password-invalida"></span>
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center">
                             <div class="mb-3 col-md-7">
-                                <input class="shadow form-control" type="password" id="confermaPassword" name="confermaPassword"
-                                    placeholder="Conferma password" />
+                                <input class="shadow form-control" type="password" id="confermaPassword"
+                                    name="confermaPassword" placeholder="Conferma password" />
                                 <span class="error-span" id="confermaPassword-invalida"></span>
                             </div>
                         </div>
@@ -64,7 +65,7 @@
                             </div>
                             <div class="mb-5 col-md-4">
                                 <button class="btn btn-success shadow" type="submit"
-                                    name="register-submit">Registrati</button>
+                                    name="register-submit" onclick="event.preventDefault(); checkRegistrazione()">Registrati</button>
                             </div>
                         </div>
                     </form>
@@ -76,78 +77,6 @@
         </div>
     </section>
 
-    <script>
-        function checkRegistrazione() {
-            let email = $('#email');
-            let password = $('#password');
-            let confermaPassword = $('#confermaPassword');
-            let email_msg = $('#email-invalida');
-            let password_msg = $('#password-invalida');
-            let confermaPassword_msg = $('#confermaPassword-invalida');
-            let error = false;
-
-            email.on('input', function() {
-                let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (emailPattern.test(email.val().trim())) {
-                    email_msg.html('').removeClass('error-span');
-                } else {
-                    email_msg.html('Inserisci un email con formato valido').addClass('error-span');
-                }
-            });
-
-            password.on('input', function() {
-                if (password.val().trim().length < 8) {
-                    password_msg.html('La password deve contenere almeno 8 caratteri').addClass('error-span');
-                } else {
-                    password_msg.html('').removeClass('error-span');
-                }
-            });
-
-            confermaPassword.on('input', function() {
-                if (confermaPassword.val().trim() !== password.val().trim()) {
-                    confermaPassword_msg.html('Le password non corrispondono').addClass('error-span');
-                } else {
-                    confermaPassword_msg.html('').removeClass('error-span');
-                }
-            });
-
-            if (email.val().trim() === '' || !emailPattern.test(email.val().trim())) {
-                email_msg.html('Inserisci un indirizzo mail valido').addClass('error-span');
-                email.focus();
-                error = true;
-            } else {
-                email_msg.html('').removeClass('error-span');
-            }
-
-            if (password.val().trim().length < 8) {
-                password_msg.html('La password deve contenere almeno 8 caratteri').addClass('error-span');
-                password.focus();
-                error = true;
-            } else {
-                password_msg.html('').removeClass('error-span');
-            }
-
-            if (confermaPassword.val().trim() !== password.val().trim()) {
-                confermaPassword_msg.html('Le password non corrispondono').addClass('error-span');
-                confermaPassword.focus();
-                error = true;
-            } else {
-                confermaPassword_msg.html('').removeClass('error-span');
-            }
-
-            if (!error) {
-                $('#registrazione-form').submit();
-            }
-        }
-
-        $(document).ready(function() {
-            $('#registrazione-form').on('submit', function(e) {
-                if(!checkRegistrazione()) {
-                    e.preventDefault();
-                }
-            });
-        });
-    </script>
 
 
 @endsection

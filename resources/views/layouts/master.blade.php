@@ -19,6 +19,7 @@
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}js/bootstrap.min.js"></script>
     <script src="{{ asset('js/CheckAdminForms.js') }}"></script>
+    <script src="{{ asset('js/CheckAuthForms.js') }}"></script>
     <script src="{{ asset('js/Search.js') }}"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -100,13 +101,22 @@
                                     </li>
                                     <li><a class="dropdown-item" href="{{ route('allenatori.index') }}">Gestione
                                             Allenatori</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('ordini.index') }}">Visualizza
+                                            ordini</a></li>
                                 </ul>
                             </li>
                         @endif
                         @if (isset($_SESSION['logged']) && $_SESSION['logged'] == true)
-                            <li class="nav-item"><a class="nav-link" href="#">{{ $_SESSION['loggedName'] }} </a>
+                            <li class="nav-item dropdown d-flex me-2">
+                                <a class="nav-link dropdown-toggle"
+                                    href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">{{$_SESSION['loggedName']}}</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                    <li><a class="dropdown-item" href="{{ route('ordineUtente.index') }}">I miei
+                                            ordini</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
+                                </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('user.logout') }}">Logout</a></li>
                         @else
                             <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}">Login</a></li>
                         @endif

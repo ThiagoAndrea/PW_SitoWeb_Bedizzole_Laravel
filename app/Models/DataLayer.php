@@ -453,6 +453,7 @@ class DataLayer extends Model
     public function creaOrdine($id_user){
         $carrello = Carrello::where('id_user', $id_user)->first();
         $dettagli = Dettaglio::where('id_carrello', $carrello->id_carrello)->get();
+        $prezzo_totale = 0;
         $ordine = new Ordine;
         $ordine->id_user = $id_user;
         $ordine->data_ordine = date('Y-m-d');
@@ -464,9 +465,10 @@ class DataLayer extends Model
             $quantita = $dettaglio->quantita;
             $prezzo = $prodotto->prezzo;
             $prezzo_totale += $prezzo * $quantita;
-            $lista_prodotti .= "Prodotto: {$prodotto->descrizione} (x{$quantita}) Taglia: {$taglia->taglia} \n";
+            $lista_prodotti .= "{$prodotto->descrizione} - {$taglia->taglia} (x{$quantita}) \n";
         }
         $ordine->prezzo_totale = $prezzo_totale;
+        $lista_prodotti .= "\n\nPrezzo totale: {$prezzo_totale} euro";
         $ordine->lista_prodotti = $lista_prodotti;
         $ordine->save();
 

@@ -49,6 +49,7 @@ class AuthController extends Controller
         $_SESSION['logged'] = true;
         $_SESSION['loggedName'] = $utente -> nome;
         $_SESSION['loggedId'] = $utente -> id_user;
+        $_SESSION['privilegi'] = $dl->trovaPrivilegi($request->input('email'));
         $squadre = $dl -> elencaSquadre();
         return Redirect::to(route('home'))->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('squadre', $squadre)->with('loggedId', $_SESSION['loggedId']);        
     }
@@ -58,5 +59,18 @@ class AuthController extends Controller
         session_start();
         session_destroy();
         return Redirect::to(route('home'));
+    }
+
+    public function checkEmailAjax(Request $request)
+    {
+        $dl = new DataLayer();
+        $email = $request->input('email');
+        $utente = $dl -> trovaUtente($email);
+        if($utente != null)
+            $response = array('found'=>true);
+        else
+            $response = array('found'=>false);
+
+        return response() -> json($response);
     }
 }

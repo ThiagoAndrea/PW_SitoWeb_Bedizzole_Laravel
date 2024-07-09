@@ -40,12 +40,14 @@ Route::get('/notizie', [NotiziaController::class, 'index'])->name('notizie.index
 
 Route::get('/shop', [ProdottoController::class, 'showShop'])->name('showShop');
 
-
+Route::get('user/checkEmailAjax', [AuthController::class, 'checkEmailAjax']);
 
 Route::middleware(['authControl'])->group(function(){
     Route::get('/carrello', [CarrelloController::class, 'show'])->name('carrello.show');
     Route::delete('/carrello/{id_dettaglio}', [CarrelloController::class, 'destroy'])->name('dettaglio.destroy');
     Route::post('/carrello', [OrdineController::class, 'checkout'])->name('carrello.checkout');
+    Route::get('user/ordini', [OrdineController::class, 'ordineUtente'])->name('ordineUtente.index');
+    
 });
 
 Route::middleware(['giornalistaControl'])->group(function(){
@@ -62,6 +64,7 @@ Route::middleware(['adminControl'])->group(function () {
     Route::get('/admin/giocatori/{id_giocatore}/update', [GiocatoreController::class, 'update'])->name('giocatore.update');
     Route::get('/admin/giocatori/{id_giocatore}/delete', [GiocatoreController::class, 'destroy'])->name('giocatore.delete');
     Route::get('/admin/giocatori/{id_giocatore}/delete/confirm', [GiocatoreController::class, 'confirmDestroy'])->name('giocatore.confirmDelete');
+    Route::get('/admin/ordini', [OrdineController::class, 'index'])->name('ordini.index');
 });
 
 //Questa per ultima sennò si sovrappone
