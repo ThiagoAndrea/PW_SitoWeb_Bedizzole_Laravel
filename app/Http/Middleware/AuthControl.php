@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class AuthCustom
+class AuthControl
 {
     /**
      * Handle an incoming request.

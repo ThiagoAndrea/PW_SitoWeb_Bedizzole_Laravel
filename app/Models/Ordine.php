@@ -13,7 +13,7 @@ class Ordine extends Model
     protected $table = 'ordini';
     protected $primaryKey = 'id_ordine';
  
-    protected $fillable = ['id_user', 'data_ordine', 'lista_prodotti'];
+    protected $fillable = ['id_user', 'data_ordine', 'lista_prodotti', 'prezzo_totale'];
  
     public function utente(){
      return $this->belongsTo(Utente::class, 'id_user');

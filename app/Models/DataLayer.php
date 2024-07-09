@@ -439,6 +439,41 @@ class DataLayer extends Model
         $dettaglio->save();
     }
 
+    //Funzioni per gli ordini
+    public function elencaOrdini(){
+        $ordini = Ordine::all();
+        return $ordini;
+    }
+
+    public function elencaOrdiniDaUtente($id_user){
+        $ordini = Ordine::where('id_user', $id_user)->get();
+        return $ordini;
+    }
+
+    public function creaOrdine($id_user){
+        $carrello = Carrello::where('id_user', $id_user)->first();
+        $dettagli = Dettaglio::where('id_carrello', $carrello->id_carrello)->get();
+        $ordine = new Ordine;
+        $ordine->id_user = $id_user;
+        $ordine->data_ordine = date('Y-m-d');
+
+        $lista_prodotti = '';
+        foreach($dettagli as $dettaglio){
+            $prodotto = Prodotto::find($dettaglio->id_prodotto);
+            $taglia = Taglia::find($dettaglio->id_taglia);
+            $quantita = $dettaglio->quantita;
+            $prezzo = $prodotto->prezzo;
+            $prezzo_totale += $prezzo * $quantita;
+            $lista_prodotti .= "Prodotto: {$prodotto->descrizione} (x{$quantita}) Taglia: {$taglia->taglia} \n";
+        }
+        $ordine->prezzo_totale = $prezzo_totale;
+        $ordine->lista_prodotti = $lista_prodotti;
+        $ordine->save();
+
+        Dettaglio::where('id_carrello', $carrello->id_carrello)->delete();
+
+    }
+
 
 
 }

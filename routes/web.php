@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrdineController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\SquadraController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\NotiziaController;
 use App\Http\Controllers\ProdottoController;
 use App\Http\Controllers\AllenatoreController;
 use App\Http\Controllers\CarrelloController;
+
 
 
 /*
@@ -43,6 +45,7 @@ Route::get('/shop', [ProdottoController::class, 'showShop'])->name('showShop');
 Route::middleware(['authControl'])->group(function(){
     Route::get('/carrello', [CarrelloController::class, 'show'])->name('carrello.show');
     Route::delete('/carrello/{id_dettaglio}', [CarrelloController::class, 'destroy'])->name('dettaglio.destroy');
+    Route::post('/carrello', [OrdineController::class, 'checkout'])->name('carrello.checkout');
 });
 
 Route::middleware(['giornalistaControl'])->group(function(){

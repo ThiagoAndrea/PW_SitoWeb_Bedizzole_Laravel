@@ -74,6 +74,7 @@ return new class extends Migration
             $table->integer('id_user')->unsigned();
             $table->date('data_ordine');
             $table->string('lista_prodotti');
+            $table->float('prezzo_totale');
             $table->foreign('id_user')->references('id_user')->on('utenti')->onDelete('cascade');            
         });
 

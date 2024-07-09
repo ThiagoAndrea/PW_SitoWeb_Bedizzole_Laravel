@@ -424,3 +424,18 @@ footer div h3 {
 .img-login{
     border-radius: 10px;
 }
+
+#row-carrello-pagamento {
+    margin-top: 2%;
+}
+
+.button-pagamento {
+    margin-top: 2%;
+    padding: 3%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.button-back-shop {
+    margin-left: 5%;
+}

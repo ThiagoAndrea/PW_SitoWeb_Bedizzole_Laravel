@@ -8,23 +8,33 @@ use App\Models\Dettaglio;
 
 class CarrelloController extends Controller
 {
-    public function show(){
-        session_start();
-        if(isset($_SESSION['logged'])){
-            $dl = new DataLayer();
-            $carrello = $dl -> trovaCarrelloDaIdUtente($_SESSION['loggedId']);
-            $dettagli = $dl -> elencaDettagliCarrello($carrello->id_carrello);
-            $squadre = $dl -> elencaSquadre();
-            return view('carrello.carrello')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('dettagli', $dettagli)->with('squadre', $squadre);
-        } else {
-            redirect('user/login');
+    public function show()
+    {
+        $dl = new DataLayer();
+        $carrello = $dl->trovaCarrelloDaIdUtente($_SESSION['loggedId']);
+        $dettagli = $dl->elencaDettagliCarrello($carrello->id_carrello);
+        $totale = 0;
+        $prezziDettagli=[];
+        foreach ($dettagli as $dettaglio){
+            $prodotto = $dl->trovaProdottoDaId($dettaglio->id_prodotto);
+            $prezzo = $prodotto->prezzo;
+            $quantita = $dettaglio->quantita;
+            $prezzoDettaglio = $prezzo * $quantita;
+            $totale += $prezzoDettaglio;
+
+            $prezziDettagli[$dettaglio->id_dettaglio] = $prezzoDettaglio;
         }
+    
+
+        $squadre = $dl->elencaSquadre();
+        return view('carrello.carrello')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('dettagli', $dettagli)->with('squadre', $squadre)->with('prezzoTotale', $totale)->with('prezziDettagli', $prezziDettagli);
+
     }
 
-    public function destroy($id_dettaglio){
-        session_start();
+    public function destroy($id_dettaglio)
+    {
         $dl = new DataLayer();
-        $dl -> eliminaDettaglio($id_dettaglio);
+        $dl->eliminaDettaglio($id_dettaglio);
         return redirect('carrello');
     }
 }

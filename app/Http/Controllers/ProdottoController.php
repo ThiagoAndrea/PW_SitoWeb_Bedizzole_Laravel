@@ -81,15 +81,12 @@ class ProdottoController extends Controller
 
     public function showCarrello()
     {
-        session_start();
+
         $dl = new DataLayer();
         $prodotti = $dl->elencaProdotti();
         $squadre = $dl->elencaSquadre();
-        if (isset($_SESSION['logged'])) {
-            return view('carrello.carrello')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('prodotti', $prodotti)->with('squadre', $squadre);
-        } else {
-            return view('carrello.carrello')->with('logged', false)->with('prodotti', $prodotti)->with('squadre', $squadre);
-        }
+        return view('carrello.carrello')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('prodotti', $prodotti)->with('squadre', $squadre);
+
     }
 
 }
