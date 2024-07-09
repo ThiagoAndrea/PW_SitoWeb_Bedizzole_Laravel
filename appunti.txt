@@ -7,7 +7,7 @@
                             2: Fare in modo che l'utente loggato possa scaricare i moduli e anche caricarli? Se può anche caricarli devo salvarli e controllarli da qualche parte
     
                         Shop: 
-                            2: Aggiungere anche la sezione di ordini effettuati. (Forse una struttura dati in più? verifica gli sweets)
+                            2: Aggiungere anche la sezione di ordini effettuati.
                             3: Modificare il bottone "aggiungi al carrello" solo se si è loggati, mentre allo shop ci può accedere chiunque
                         
                         Contatti:
@@ -28,7 +28,7 @@
                             2: Sistemare i permessi tra utenti visitatori / utenti registrati / giornalisti / admin
 
                         Javascript e Ajax:
-                            1: Come js posso fare la ricerca nelle varie tabelle, oltre ai controlli sugli input e il filtraggio delle tabelle (c'è un metodo di grid e row per il filtraggio)
+                            1: Js: implementare l'ordinamento della tabella
                             2: Come Ajax posso fare lo scorrimento delle notizie da "notizia precedente" a "notizia successiva" nelle viste notizia.show
                             3: Implementare con Ajax tutte le eliminazioni: non serve creare una nuova pagina di conferma eliminazione! Controlla anche la rimozione di un dettaglio dal carrello.
 

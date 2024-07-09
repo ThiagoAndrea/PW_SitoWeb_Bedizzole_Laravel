@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthCustom
 {
@@ -16,6 +17,12 @@ class AuthCustom
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        session_start();
+        if(isset($_SESSION['logged'])){
+            return $next($request);
+            
+        }
+        return Redirect::to(route('user.login'));
+        
     }
 }

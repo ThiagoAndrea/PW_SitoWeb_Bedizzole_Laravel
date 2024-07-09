@@ -18,7 +18,6 @@ class FrontController extends Controller
         if(isset($_SESSION['logged'])){
             return view('home')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('squadre', $squadre)->with('notizie', $notizie);
         }
-            
         else
         return view('home')->with('logged', false)->with('squadre', $squadre)->with('notizie', $notizie);
         

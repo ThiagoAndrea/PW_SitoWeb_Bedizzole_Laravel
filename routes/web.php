@@ -33,36 +33,34 @@ Route::post('user/registration', [AuthController::class, 'postRegistration']);
 
 Route::get('user/logout', [AuthController::class, 'getLogout'])->name('user.logout');
 
-
-Route::resource('admin/giocatori', GiocatoreController::class);
-Route::get('/admin/giocatori/{id_giocatore}/update', [GiocatoreController::class, 'update'])->name('giocatore.update');
-Route::get('/admin/giocatori/{id_giocatore}/delete', [GiocatoreController::class, 'destroy'])->name('giocatore.delete');
-Route::get('/admin/giocatori/{id_giocatore}/delete/confirm', [GiocatoreController::class, 'confirmDestroy'])->name('giocatore.confirmDelete');
-
-//Rotte per le notizie
-
-Route::resource('notizie', NotiziaController::class);
 Route::get('/notizie/{id_notizia}', [NotiziaController::class, 'show'])->name('notizia.show');
+Route::get('/notizie', [NotiziaController::class, 'index'])->name('notizie.index');
 
-//Rotta per la vista del giornalista
-Route::get('/giornalista', [NotiziaController::class, 'getGiornalista'])->name('giornalista.index');
-
-//Rotta per lo shop
 Route::get('/shop', [ProdottoController::class, 'showShop'])->name('showShop');
 
-//Rotta per il carrello
-Route::get('/carrello', [CarrelloController::class, 'show'])->name('carrello.show');
-Route::delete('/carrello/{id_dettaglio}', [CarrelloController::class, 'destroy'])->name('dettaglio.destroy');
-
-//Rotte per la gestione del negozio lato admin
-Route::resource('admin/prodotti', ProdottoController::class);
-
-//Rotte per la gestione degli allenatori 
-Route::resource('admin/allenatori', AllenatoreController::class);
 
 
+Route::middleware(['authControl'])->group(function(){
+    Route::get('/carrello', [CarrelloController::class, 'show'])->name('carrello.show');
+    Route::delete('/carrello/{id_dettaglio}', [CarrelloController::class, 'destroy'])->name('dettaglio.destroy');
+});
+
+Route::middleware(['giornalistaControl'])->group(function(){
+    Route::get('/giornalista', [NotiziaController::class, 'getGiornalista'])->name('giornalista.index');
+    Route::resource('notizie', NotiziaController::class)->except(['index']);
+});
 
 
-//Questo va in fondo alle rotte perché altrimenti si sovrappone
-Route::get('/{squadra}', [SquadraController::class, 'show']) -> name('squadra.show');
+//Rotte per l'admin
+Route::middleware(['adminControl'])->group(function () {
+    Route::resource('admin/prodotti', ProdottoController::class);
+    Route::resource('admin/allenatori', AllenatoreController::class);
+    Route::resource('admin/giocatori', GiocatoreController::class);
+    Route::get('/admin/giocatori/{id_giocatore}/update', [GiocatoreController::class, 'update'])->name('giocatore.update');
+    Route::get('/admin/giocatori/{id_giocatore}/delete', [GiocatoreController::class, 'destroy'])->name('giocatore.delete');
+    Route::get('/admin/giocatori/{id_giocatore}/delete/confirm', [GiocatoreController::class, 'confirmDestroy'])->name('giocatore.confirmDelete');
+});
+
+//Questa per ultima sennò si sovrappone
+Route::get('/{squadra}', [SquadraController::class, 'show'])->name('squadra.show');
 

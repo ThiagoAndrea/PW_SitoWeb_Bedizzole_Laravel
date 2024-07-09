@@ -31,6 +31,23 @@ class db_seed extends Seeder
             'email' => 'andpaolini@gmail.com',
         ]);
 
+        Utente::create([
+            'nome' => 'Giornalista',
+            'cognome' => 'Rossi',
+            'password' => md5('giornalista'),
+            'email' => 'giornalista@gmail.com',
+            'privilegi' => 1,
+        ]);
+
+
+        Utente::create([
+            'nome' => 'Admin',
+            'cognome' => 'Verdi',
+            'password' => md5('admin'),
+            'email' => 'admin@gmail.com',
+            'privilegi' => 2,
+        ]);
+
         Squadra::create([
             'nome' => 'Scuola calcio',
         ]);

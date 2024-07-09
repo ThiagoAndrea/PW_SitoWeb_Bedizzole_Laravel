@@ -234,7 +234,9 @@ footer div h3 {
 }
 
 #loginWindow {
-    border: #8b2b12 1px solid;
+    box-shadow: 0 4px 8px #8b2a124f;
+    border-radius: 10px;
+    background-color: #f0f0f0;
 }
 
 #breadcrumb-nav {
@@ -356,7 +358,7 @@ footer div h3 {
 .container-notizie-home{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    background-color: white;
+    background-color: #f0f0f0;
     margin-top: 3%;
 }
 
@@ -414,12 +416,11 @@ footer div h3 {
 }
 
 
-#map {
-    height: 400px; /* Altezza desiderata della mappa */
-    width: 100%;   /* Larghezza piena del contenitore */
-}
-
 .container-ricerca{
     margin-top: 2%;
     margin-bottom: 2%;
+}
+
+.img-login{
+    border-radius: 10px;
 }

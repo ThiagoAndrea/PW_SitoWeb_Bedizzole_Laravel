@@ -249,6 +249,16 @@ class DataLayer extends Model
         return $utente->id_user;
     }
 
+    public function trovaUtente($email){
+        $utente = Utente::where('email', $email)->first();
+        return $utente;
+    }
+
+    public function trovaPrivilegi($email)
+    {
+        $utente = Utente::where('email', $email)->first();
+        return $utente->privilegi;
+    }
 
 
     public function aggiungiUtente($email, $password, $nome, $cognome)
@@ -259,6 +269,10 @@ class DataLayer extends Model
         $utente->nome = $nome;
         $utente->cognome = $cognome;
         $utente->save();
+
+        $carello = new Carrello;
+        $carello->id_user = $utente->id_user;
+        $carello->save();
     }
 
     public function trovaIdUtenteDaEmail($email)

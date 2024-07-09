@@ -25,6 +25,7 @@ class AuthController extends Controller
         $_SESSION['logged']=true;
         $_SESSION['loggedName'] = $nome_utente;
         $_SESSION['loggedId'] = $id_utente;
+        $_SESSION['privilegi'] = $dl->trovaPrivilegi($request->input('email'));
         return Redirect::to(route('home'))->with('logged', true)->with('loggedName', $nome_utente)->with('loggedId', $id_utente);
 
     } else
@@ -36,7 +37,7 @@ class AuthController extends Controller
     {
         $dl = new DataLayer();
         $squadre = $dl->elencaSquadre();
-        return view('auth.registration')->with('squadre', $squadre);
+        return view('auth.registration')->with('squadre', $squadre)->with('logged', false);
     }
 
     public function postRegistration(Request $request)
@@ -44,8 +45,12 @@ class AuthController extends Controller
         session_start();
         $dl = new DataLayer();
         $dl -> aggiungiUtente($request->input('email'), $request->input('password'), $request->input('nome'), $request->input('cognome'));
+        $utente = $dl -> trovaUtente($request->input('email'));
+        $_SESSION['logged'] = true;
+        $_SESSION['loggedName'] = $utente -> nome;
+        $_SESSION['loggedId'] = $utente -> id_user;
         $squadre = $dl -> elencaSquadre();
-        return Redirect::to(route('home'))->with('logged', true)->with('loggedName', $request->input('nome'))->with('squadre', $squadre);        
+        return Redirect::to(route('home'))->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('squadre', $squadre)->with('loggedId', $_SESSION['loggedId']);        
     }
 
     public function getLogout()

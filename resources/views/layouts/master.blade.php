@@ -4,22 +4,22 @@
 
 <head>
     <title> @yield('titolo_head')</title>
-    <link rel="icon" type="imagex-icon" href="{{ asset('img/logo.png') }}">
+    <link rel="icon" type="imagex-icon" href="{{ asset('img/base/logo.png') }}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Fogli di stile -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('css/icons.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
 
 
     <!-- jQuery e plugin JavaScript  -->
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}js/bootstrap.min.js"></script>
-    <script src="{{asset('js/CheckAdminForms.js')}}"></script>
-    <script src="{{asset('js/Search.js')}}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/CheckAdminForms.js') }}"></script>
+    <script src="{{ asset('js/Search.js') }}"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -33,14 +33,14 @@
         <header class="intestazione">
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col text-center">
-                    <img src="{{ asset('img/static/logo.png') }}" class="img-fluid img-header">
+                    <img src="{{ asset('img/base/logo.png') }}" class="img-fluid img-header">
 
                 </div>
                 <div class="col text-center">
                     <h1>FC Bedizzole</h1>
                 </div>
                 <div class="col text-center">
-                    <img src="{{ asset('img/static/logo.png') }}" class="img-fluid img-header">
+                    <img src="{{ asset('img/base/logo.png') }}" class="img-fluid img-header">
                 </div>
             </div>
         </header>
@@ -57,8 +57,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link {{request()->routeIs('home') ? 'active' : ''}}"
-                                aria-current="page" href="{{route('home')}}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                                aria-current="page" href="{{ route('home') }}">Home</a></li>
                         <li class="nav-item dropdown {{ request()->routeIs('squadra.show*') ? 'active' : '' }}">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">Squadre</a>
@@ -72,27 +72,40 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a
-                                class="nav-link {{request()->routeIs('notizie.index') ? 'active' : ''}}"
-                                href="{{route('notizie.index')}}">Notizie</a></li>
-                        <li class="nav-item"><a class="nav-link {{request()->routeIs('showShop') ? 'active' : ''}}"
-                                href="{{route('showShop')}}">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link {{request() ->routeIs('showContatti') ? 'active' : ''}}" href="{{route('showContatti')}}">Contatti</a></li>
+                                class="nav-link {{ request()->routeIs('notizie.index') ? 'active' : '' }}"
+                                href="{{ route('notizie.index') }}">Notizie</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('showShop') ? 'active' : '' }}"
+                                href="{{ route('showShop') }}">Shop</a></li>
+                        <li class="nav-item"><a
+                                class="nav-link {{ request()->routeIs('showContatti') ? 'active' : '' }}"
+                                href="{{ route('showContatti') }}">Contatti</a></li>
 
                     </ul>
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link {{request()->routeIs('carrello.show') ? 'active' : ''}}"
-                            href="{{route('carrello.show')}}"><iconify-icon icon="bi:cart-fill"></iconify-icon>Carrello</a></li>
-                        <li class="nav-item dropdown d-flex me-2">
-                            <a class="nav-link dropdown-toggle {{request()->routeIs('giocatori.index') || request()->routeIs('prodotti.index') ? 'active' : ''}}" href="#" id="navbarDropdownAdmin" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-                                <li><a class="dropdown-item" href="{{route('giocatori.index')}}">Gestione Rose</a></li>
-                                <li><a class="dropdown-item" href="{{route("prodotti.index")}}">Gestione Shop</a></li>
-                                <li><a class="dropdown-item" href="{{route('allenatori.index')}}">Gestione Allenatori</a></li>
-                            </ul>
-                        </li>
-                        @if ($logged)
-                            <li class="nav-item"><a class="nav-link" href="#">{{ $loggedName }} </a></li>
+                        @if (isset($_SESSION['logged']) && $_SESSION['logged'])
+                            <li class="nav-item"><a
+                                    class="nav-link {{ request()->routeIs('carrello.show') ? 'active' : '' }}"
+                                    href="{{ route('carrello.show') }}"><iconify-icon
+                                        icon="bi:cart-fill"></iconify-icon>Carrello</a></li>
+                        @endif
+                        @if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && $_SESSION['privilegi'] == 2)
+                            <li class="nav-item dropdown d-flex me-2">
+                                <a class="nav-link dropdown-toggle {{ request()->routeIs('giocatori.index') || request()->routeIs('prodotti.index') ? 'active' : '' }}"
+                                    href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">Admin</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                    <li><a class="dropdown-item" href="{{ route('giocatori.index') }}">Gestione
+                                            Rose</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('prodotti.index') }}">Gestione Shop</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('allenatori.index') }}">Gestione
+                                            Allenatori</a></li>
+                                </ul>
+                            </li>
+                        @endif
+                        @if (isset($_SESSION['logged']) && $_SESSION['logged'] == true)
+                            <li class="nav-item"><a class="nav-link" href="#">{{ $_SESSION['loggedName'] }} </a>
+                            </li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('user.logout') }}">Logout</a></li>
                         @else
                             <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}">Login</a></li>
@@ -115,7 +128,7 @@
         <footer id="bottom" class="row d-flex align-items-center justify-content-center">
             <div class="row">
                 <div class="col  text-center">
-                    <img src="{{ asset('img/static/logo.png') }}" class="img-fluid logo-footer">
+                    <img src="{{ asset('img/base/logo.png') }}" class="img-fluid logo-footer">
                 </div>
                 <div class="col text-center">
                     <h3>Contatti</h3>
