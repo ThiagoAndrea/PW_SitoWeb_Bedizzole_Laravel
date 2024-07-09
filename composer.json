@@ -7,9 +7,11 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
+        "koossaayy/laravel-mapbox": "^0.4.5",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "paypal/rest-api-sdk-php": "^1.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -62,4 +64,6 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true
+
+    
 }

@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
 
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js"></script>
+
 
     <!-- jQuery e plugin JavaScript  -->
     <script src="http://code.jquery.com/jquery.js"></script>
@@ -108,9 +111,9 @@
                         @endif
                         @if (isset($_SESSION['logged']) && $_SESSION['logged'] == true)
                             <li class="nav-item dropdown d-flex me-2">
-                                <a class="nav-link dropdown-toggle"
-                                    href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">{{$_SESSION['loggedName']}}</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin"
+                                    role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">{{ $_SESSION['loggedName'] }}</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                                     <li><a class="dropdown-item" href="{{ route('ordineUtente.index') }}">I miei
                                             ordini</a></li>

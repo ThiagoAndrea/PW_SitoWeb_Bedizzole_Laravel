@@ -96,7 +96,7 @@
             <div class="row" id="row-carrello-pagamento">
                 <div class="col">
                     <h5>Il prezzo totale del carrello è: <strong>{{ $prezzoTotale }} €</strong></h5>
-                    <form action="{{route('carrello.checkout')}}" method="POST">
+                    <form action="{{route('payment')}}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-success button-pagamento">Procedi al pagamento</button>
                 </div>

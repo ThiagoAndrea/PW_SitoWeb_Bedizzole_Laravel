@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrdineController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\SquadraController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\NotiziaController;
 use App\Http\Controllers\ProdottoController;
 use App\Http\Controllers\AllenatoreController;
 use App\Http\Controllers\CarrelloController;
+
 
 
 
@@ -41,6 +43,8 @@ Route::get('/notizie', [NotiziaController::class, 'index'])->name('notizie.index
 Route::get('/shop', [ProdottoController::class, 'showShop'])->name('showShop');
 
 Route::get('user/checkEmailAjax', [AuthController::class, 'checkEmailAjax']);
+
+Route::post('/payment', [PaymentController::class, 'payment'])->name('payment');
 
 Route::middleware(['authControl'])->group(function(){
     Route::get('/carrello', [CarrelloController::class, 'show'])->name('carrello.show');
