@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataLayer;
+use App\Models\Allenatore;
 
 class AllenatoreController extends Controller
 {
@@ -55,4 +56,5 @@ class AllenatoreController extends Controller
         $dl->modificaAllenatore($id_allenatore, $request);
         return redirect('admin/allenatori');
     }
+
 }

@@ -76,7 +76,7 @@
                                 <div class="col">
                                     <a href="{{ route('giocatori.edit', ['giocatori' => $giocatore->id_giocatore]) }}"
                                         class="btn btn-light"><iconify-icon icon="mdi:pencil"></iconify-icon> Modifica</a>
-                                    <a href="{{ route('giocatore.confirmDelete', ['id_giocatore' => $giocatore->id_giocatore]) }}"
+                                    <a href="{{ route('giocatore.destroy', ['id_giocatore' => $giocatore->id_giocatore]) }}"
                                         class="btn btn-danger"><iconify-icon icon="bi:trash-fill"></iconify-icon>
                                         Elimina</a>
                                 </div>
