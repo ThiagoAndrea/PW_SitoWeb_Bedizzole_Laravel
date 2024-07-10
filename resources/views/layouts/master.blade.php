@@ -86,7 +86,7 @@
 
                     </ul>
                     <ul class="navbar-nav ms-auto">
-                        @if (isset($_SESSION['logged']) && $_SESSION['logged'])
+                        @if (isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['privilegi'] == 0)
                             <li class="nav-item"><a
                                     class="nav-link {{ request()->routeIs('carrello.show') ? 'active' : '' }}"
                                     href="{{ route('carrello.show') }}"><iconify-icon

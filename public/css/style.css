@@ -393,7 +393,7 @@ footer div h3 {
 
 .anchor-ultime-notizie:hover {
     text-decoration: none;
-    color: #661e0c;
+    color: #8b2b12;
 }
 
 
@@ -412,7 +412,16 @@ footer div h3 {
      
 }
 
+.row-contatti{
+    margin-top: 10%;
+  }
 
+  .card-contatto{
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding-top: 5%;
+    padding-bottom: 2%;
+  }
 
 .full-height .row {
     flex: 1; 
@@ -424,7 +433,7 @@ footer div h3 {
 }
 
 .full-height .row:hover {
-    background-color: #8b2a12c9;
+    background-color: #8b2b12;
 }
 
 .full-height .row:last-child {
@@ -483,4 +492,38 @@ footer div h3 {
 
 .descrizioneProdotto h3{
     height: 100px;
+}
+
+.home-widget {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #f0f0f0;
+}
+
+.home-widget h1{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.btn-vediRose{
+    width: 80%;
+    background-color: #f0f0f0;
+    margin: 2%;
+}
+
+.btn-vediRose:hover{
+    background-color: #8b2b12;
+    color: #ddd;
+    
+}
+
+.btn-vediShop{
+    width: 100%;
+    background-color: #f0f0f0;
+}
+
+.btn-vediShop:hover{
+    background-color: #8b2b12;
+    color: #ddd;
+    
 }

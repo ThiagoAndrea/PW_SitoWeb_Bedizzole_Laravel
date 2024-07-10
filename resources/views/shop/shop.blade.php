@@ -50,8 +50,6 @@
                 <form method="POST" action="{{ route('aggiungiAlCarrello') }}">
                     @csrf
                     <input type="hidden" name="id_user" @if(isset($_SESSION['logged'])) value="{{ $_SESSION['loggedId'] }}" @endif>
-
-
                     <div class="prodotto-shop">
                         <div class="immagineProdotto">
                             <img src="{{ asset('img/shop/' . $prodotto->foto) }}" class="img-fluid">
