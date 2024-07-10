@@ -32,6 +32,13 @@ class db_seed extends Seeder
         ]);
 
         Utente::create([
+            'nome' => 'Utente',
+            'cognome' => 'Bianchi',
+            'password' => md5('utente'),
+            'email' => 'utente@gmail.com',
+        ]);
+
+        Utente::create([
             'nome' => 'Giornalista',
             'cognome' => 'Rossi',
             'password' => md5('giornalista'),
@@ -147,7 +154,7 @@ class db_seed extends Seeder
             }
         }
 
-        $utenti = Utente::all();
+        $utenti = Utente::where('privilegi', 0)->get();
         foreach ($utenti as $utente) {
             Carrello::create([
                 'id_user' => $utente->id_user,

@@ -45,12 +45,11 @@ Route::get('/shop', [ProdottoController::class, 'showShop'])->name('showShop');
 
 Route::get('user/checkEmailAjax', [AuthController::class, 'checkEmailAjax']);
 
-Route::post('/payment', [PaymentController::class, 'payment'])->name('payment');
 
 Route::middleware(['authControl'])->group(function(){
     Route::get('/carrello', [CarrelloController::class, 'show'])->name('carrello.show');
     Route::delete('/carrello/{id_dettaglio}', [CarrelloController::class, 'destroy'])->name('dettaglio.destroy');
-    Route::post('/carrello', [OrdineController::class, 'checkout'])->name('carrello.checkout');
+    Route::post('/carrello/checkout', [OrdineController::class, 'checkout'])->name('carrello.checkout');
     Route::get('user/ordini', [OrdineController::class, 'ordineUtente'])->name('ordineUtente.index');
     Route::post('/carrello', [CarrelloController::class, 'aggiungiAlCarrello'])->name('aggiungiAlCarrello');
     Route::delete('/carrello/dettaglio/destroy/{dettaglio}', [CarrelloController::class, 'destroy'])->name('dettaglio.destroy');
@@ -59,7 +58,7 @@ Route::middleware(['authControl'])->group(function(){
 
 Route::middleware(['giornalistaControl'])->group(function(){
     Route::get('/giornalista', [NotiziaController::class, 'getGiornalista'])->name('giornalista.index');
-    Route::resource('notizie', NotiziaController::class)->except(['index']);
+    Route::resource('/giornalista/notizie', NotiziaController::class)->except(['index']);
 });
 
 

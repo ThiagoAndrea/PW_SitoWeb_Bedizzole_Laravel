@@ -72,16 +72,6 @@ class DataLayer extends Model
 
     public function aggiungiGiocatore(Request $request)
     {
-
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'cognome' => 'required|string|max:255',
-            'data_di_nascita' => 'required|date',
-            'id_squadra' => 'required|integer',
-            'ruolo' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
-
         $giocatore = new Giocatore;
         $giocatore->nome = $request->nome;
         $giocatore->cognome = $request->cognome;
@@ -90,15 +80,17 @@ class DataLayer extends Model
         $giocatore->ruolo = $request->ruolo;
 
         if ($request->hasFile('foto')) {
-            // Rimuove la vecchia foto se esiste
-            if ($giocatore->foto && File::exists(public_path('img/giocatori/' . $giocatore->foto))) {
-                File::delete(public_path('img/giocatori/' . $giocatore->foto));
-            }
             $file = $request->file('foto');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $filename = $giocatore->foto ? $giocatore->foto : (time() . '.' . $file->getClientOriginalExtension());
             $file->move(public_path('img/giocatori'), $filename);
             $giocatore->foto = $filename;
+        } else {
+            if (!$giocatore->foto) {
+                $giocatore->foto = 'logo.png';
+            }
         }
+
+
 
         $giocatore->save();
 
@@ -156,13 +148,13 @@ class DataLayer extends Model
         $prodotto->prezzo = floatval($request->prezzo);
 
         if ($request->hasFile('foto')) {
-            if ($prodotto->foto && File::exists(public_path('img/shop/' . $prodotto->foto))) {
-                File::delete(public_path('img/notizie/' . $prodotto->foto));
-            }
             $file = $request->file('foto');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('img/shop'), $filename);
             $prodotto->foto = $filename;
+        }
+        else {
+            $prodotto->foto = 'logo.png';
         }
         $prodotto->save();
 
@@ -189,7 +181,7 @@ class DataLayer extends Model
         if (!empty($taglie_selezionate)) {
             $prodotto->taglie()->attach($taglie_selezionate);
         }
-       
+
         $prodotto->save();
     }
 
@@ -232,7 +224,8 @@ class DataLayer extends Model
     }
 
     public function utenteValido($email, $password)
-    {$utente = Utente::where('email', $email)->first(['password', 'nome']);
+    {
+        $utente = Utente::where('email', $email)->first(['password', 'nome']);
         if (!$utente) {
             return false;
         }
@@ -249,7 +242,8 @@ class DataLayer extends Model
         return $utente->id_user;
     }
 
-    public function trovaUtente($email){
+    public function trovaUtente($email)
+    {
         $utente = Utente::where('email', $email)->first();
         return $utente;
     }
@@ -304,13 +298,12 @@ class DataLayer extends Model
         $notizia->data = $request->data;
 
         if ($request->hasFile('foto')) {
-            if ($notizia->foto && File::exists(public_path('img/notizie/' . $notizia->foto))) {
-                File::delete(public_path('img/notizie/' . $notizia->foto));
-            }
             $file = $request->file('foto');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('img/notizie'), $filename);
             $notizia->foto = $filename;
+        } else {
+            $notizia->foto = 'logo.png';
         }
 
         $notizia->save();
@@ -334,6 +327,7 @@ class DataLayer extends Model
         $notizia->save();
     }
 
+
     public function eliminaNotizia($id)
     {
         $notizia = Notizia::find($id);
@@ -348,7 +342,8 @@ class DataLayer extends Model
         return $allenatori;
     }
 
-    public function eliminaAllenatore($id){
+    public function eliminaAllenatore($id)
+    {
         $allenatore = Allenatore::find($id);
         $allenatore->delete();
     }
@@ -386,6 +381,8 @@ class DataLayer extends Model
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('img/allenatori'), $filename);
             $allenatore->foto = $filename;
+        } else {
+            $allenatore->foto = 'logo.png';
         }
 
         $allenatore->save();
@@ -413,24 +410,28 @@ class DataLayer extends Model
         return $carrello;
     }
 
-    public function elencaDettagliCarrello($id_carrello){
+    public function elencaDettagliCarrello($id_carrello)
+    {
         $dettagli = Dettaglio::where('id_carrello', $id_carrello)->get();
         return $dettagli;
     }
 
-    public function eliminaDettaglio($id){
+    public function eliminaDettaglio($id)
+    {
         $dettaglio = Dettaglio::find($id);
         $dettaglio->delete();
     }
 
-    public function modificaDettaglio($id, $request){
+    public function modificaDettaglio($id, $request)
+    {
         $dettaglio = Dettaglio::find($id);
         $dettaglio->quantita = $request->quantita;
         $dettaglio->id_taglia = $request->id_taglia;
         $dettaglio->save();
     }
 
-    public function aggiungiDettaglio($request){
+    public function aggiungiDettaglio($request)
+    {
         $dettaglio = new Dettaglio;
         $id_carrello = Carrello::where('id_user', $request->id_user)->first()->id_carrello;
         $dettaglio->id_carrello = $id_carrello;
@@ -441,17 +442,20 @@ class DataLayer extends Model
     }
 
     //Funzioni per gli ordini
-    public function elencaOrdini(){
+    public function elencaOrdini()
+    {
         $ordini = Ordine::all();
         return $ordini;
     }
 
-    public function elencaOrdiniDaUtente($id_user){
+    public function elencaOrdiniDaUtente($id_user)
+    {
         $ordini = Ordine::where('id_user', $id_user)->get();
         return $ordini;
     }
 
-    public function creaOrdine($id_user){
+    public function creaOrdine($id_user)
+    {
         $carrello = Carrello::where('id_user', $id_user)->first();
         $dettagli = Dettaglio::where('id_carrello', $carrello->id_carrello)->get();
         $prezzo_totale = 0;
@@ -460,7 +464,7 @@ class DataLayer extends Model
         $ordine->data_ordine = date('Y-m-d');
 
         $lista_prodotti = '';
-        foreach($dettagli as $dettaglio){
+        foreach ($dettagli as $dettaglio) {
             $prodotto = Prodotto::find($dettaglio->id_prodotto);
             $taglia = Taglia::find($dettaglio->id_taglia);
             $quantita = $dettaglio->quantita;

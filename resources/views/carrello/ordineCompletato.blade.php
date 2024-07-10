@@ -25,7 +25,7 @@
     </div>
     <div class="row justify-content-center mt-3">
         <div class="col-md-8 text-center">
-            <h5>Grazie per aver effettuato l'ordine</h5>
+            <h5>Grazie per aver effettuato l'ordine. Potrai pagare e ritirare direttamente al centro sportivo!</h5>
         </div>
     </div>
     <div class="row justify-content-center mt-3">

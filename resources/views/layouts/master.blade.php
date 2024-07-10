@@ -115,8 +115,10 @@
                                     role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">{{ $_SESSION['loggedName'] }}</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-                                    <li><a class="dropdown-item" href="{{ route('ordineUtente.index') }}">I miei
-                                            ordini</a></li>
+                                    @if ($_SESSION['privilegi'] == 0)
+                                        <li><a class="dropdown-item" href="{{ route('ordineUtente.index') }}">I miei
+                                                ordini</a></li>
+                                    @endif
                                     <li><a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a></li>
                                 </ul>
                             </li>

@@ -39,9 +39,6 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-4 ml-auto">
-                <input type="text" id="searchInput_giocatori" class="form-control" placeholder="Cerca...">
-            </div>
         </div>
     </div>
 

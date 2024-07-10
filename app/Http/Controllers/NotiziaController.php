@@ -28,7 +28,7 @@ class NotiziaController extends Controller
         $notizia = $dl->trovaNotiziaDaId($id_notizia);
         $notizie = $dl->elencaNotizie();
         $squadre = $dl->elencaSquadre();
-        if($notizia == null){
+        if ($notizia == null) {
             return redirect()->route('notFound');
         }
         if (isset($_SESSION['logged'])) {
@@ -50,7 +50,6 @@ class NotiziaController extends Controller
 
     public function store(Request $request)
     {
-
         $dl = new DataLayer();
         $dl->aggiungiNotizia($request);
         return redirect('giornalista');
@@ -58,7 +57,6 @@ class NotiziaController extends Controller
 
     public function update(Request $request, $id_notizia)
     {
-
         $dl = new DataLayer();
         $dl->modificaNotizia($id_notizia, $request);
         return redirect('giornalista');
@@ -69,7 +67,7 @@ class NotiziaController extends Controller
 
         $dl = new DataLayer();
         $notizia = $dl->trovaNotiziaDaId($id_notizia);
-        if($notizia == null){
+        if ($notizia == null) {
             return redirect()->route('notFound');
         }
         $squadre = $dl->elencaSquadre();
