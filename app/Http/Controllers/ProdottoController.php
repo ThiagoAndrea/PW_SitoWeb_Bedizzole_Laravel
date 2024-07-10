@@ -53,6 +53,8 @@ class ProdottoController extends Controller
 
         $dl = new DataLayer();
         $prodotto = $dl->trovaProdottoDaId($id_prodotto);
+        if($prodotto == null)
+            return redirect('notfound');
         $taglie = $dl->elencaTaglie();
         $squadre = $dl->elencaSquadre();
 
@@ -75,7 +77,7 @@ class ProdottoController extends Controller
     {
 
         $dl = new DataLayer();
-        $dl->eliminaNotizia($id_prodotto);
+        $dl->eliminaProdotto($id_prodotto);
         return redirect('admin/prodotti');
     }
 

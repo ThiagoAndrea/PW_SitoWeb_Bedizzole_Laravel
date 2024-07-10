@@ -29,7 +29,7 @@ class AuthController extends Controller
         return Redirect::to(route('home'))->with('logged', true)->with('loggedName', $nome_utente)->with('loggedId', $id_utente);
 
     } else
-        return 'error';
+        return redirect()->back()->with('error', 'Email o password errati');
     }
 
 

@@ -7,7 +7,7 @@
     <div class="container">
         <nav aria-label="breadcrumb" id="breadcrumb-nav">
             <ol class="breadcrumb justify-content-end">
-                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Login</li>
             </ol>
         </nav>
@@ -16,6 +16,7 @@
 
 
 @section('contenuto')
+
     <section class="py-4 p4-md-5 my-5">
         <div class="container py-md-5">
             <div class="row">
@@ -47,12 +48,22 @@
                             <p>Non sei ancora iscritto? Clicca <a href="{{ route('user.registration') }}">qui per
                                     registrarti</a></p>
                         </div>
+                        @if (session('error'))
+                            <div id="errorAlert" class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-   
 
+    <script>
+        // Script per mostrare l'alert e farlo scomparire dopo un certo tempo
+        setTimeout(function() {
+            document.getElementById('errorAlert').style.display = 'none';
+        }, 3000); // Nasconde l'alert dopo 3 secondi (3000 millisecondi)
+    </script>
 @endsection

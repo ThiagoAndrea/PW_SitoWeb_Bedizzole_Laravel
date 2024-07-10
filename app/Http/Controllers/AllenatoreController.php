@@ -21,6 +21,9 @@ class AllenatoreController extends Controller
 
         $dl = new DataLayer();
         $allenatore = $dl->trovaAllenatoreDaId($id_allenatore);
+        if($allenatore == null){
+            return redirect()->route('notFound');
+        }
         $squadre = $dl->elencaSquadre();
 
         return view('admin.modificaAllenatore')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('allenatore', $allenatore)->with('squadre', $squadre);

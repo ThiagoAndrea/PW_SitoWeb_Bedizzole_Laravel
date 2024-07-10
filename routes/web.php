@@ -11,6 +11,7 @@ use App\Http\Controllers\NotiziaController;
 use App\Http\Controllers\ProdottoController;
 use App\Http\Controllers\AllenatoreController;
 use App\Http\Controllers\CarrelloController;
+use App\Http\Controllers\ErroriController;
 
 
 
@@ -66,10 +67,17 @@ Route::middleware(['adminControl'])->group(function () {
     Route::resource('admin/allenatori', AllenatoreController::class);
     Route::resource('admin/giocatori', GiocatoreController::class);
     Route::get('/admin/giocatori/{id_giocatore}/update', [GiocatoreController::class, 'update'])->name('giocatore.update');
-    Route::get('/admin/giocatori/{id_giocatore}/delete', [GiocatoreController::class, 'destroy'])->name('giocatore.delete');
-    Route::get('/admin/giocatori/{id_giocatore}/delete/confirm', [GiocatoreController::class, 'confirmDestroy'])->name('giocatore.confirmDelete');
     Route::get('/admin/ordini', [OrdineController::class, 'index'])->name('ordini.index');
 });
+
+//Gestione degli errori
+Route::get('/error-404' ,[ErroriController::class, 'notFound'])->name('notFound');
+Route::get('/error-403', [ErroriController::class, 'forbidden'])->name('forbidden');
+Route::get('/error-500', [ErroriController::class, 'internalServerError'])->name('internalServerError');
+
+
+
+
 
 //Questa per ultima sennò si sovrappone
 Route::get('/{squadra}', [SquadraController::class, 'show'])->name('squadra.show');

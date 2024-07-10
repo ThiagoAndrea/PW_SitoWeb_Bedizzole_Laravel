@@ -16,6 +16,9 @@ class SquadraController extends Controller
         $listaGiocatori = $dl -> trovaGiocatoriDaSquadra($id_squadra);
         $squadre = $dl -> elencaSquadre();
         $squadra = $dl -> trovaSquadraDaId($id_squadra);
+        if($squadra == null){
+            return redirect()->route('notFound');
+        }
         $listaAllenatori = $dl -> trovaAllenatoriDaSquadra($id_squadra);
         if (isset ($_SESSION['logged'])) {
             return view('rose.squadre')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('listaGiocatori', $listaGiocatori)->with('squadra', $squadra)->with('squadre', $squadre)->with('listaAllenatori', $listaAllenatori);

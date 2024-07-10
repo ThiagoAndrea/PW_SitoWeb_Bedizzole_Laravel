@@ -29,6 +29,9 @@ class GiocatoreController extends Controller
         $giocatore = $dl->trovaGiocatoreDaId($id);
         $squadre = $dl->elencaSquadre();
 
+        if($giocatore == null)
+            return redirect('notfound');
+
         return view('admin.modificaGiocatore')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('giocatore', $giocatore)->with('squadre', $squadre);
 
     }

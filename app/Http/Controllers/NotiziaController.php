@@ -28,6 +28,9 @@ class NotiziaController extends Controller
         $notizia = $dl->trovaNotiziaDaId($id_notizia);
         $notizie = $dl->elencaNotizie();
         $squadre = $dl->elencaSquadre();
+        if($notizia == null){
+            return redirect()->route('notFound');
+        }
         if (isset($_SESSION['logged'])) {
             return view('notizie.dettaglioNotizia')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('notizia', $notizia)->with('squadre', $squadre)->with('notizie', $notizie);
         } else {
@@ -66,6 +69,9 @@ class NotiziaController extends Controller
 
         $dl = new DataLayer();
         $notizia = $dl->trovaNotiziaDaId($id_notizia);
+        if($notizia == null){
+            return redirect()->route('notFound');
+        }
         $squadre = $dl->elencaSquadre();
 
         return view('notizie.modificaNotizia')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('notizia', $notizia)->with('squadre', $squadre);

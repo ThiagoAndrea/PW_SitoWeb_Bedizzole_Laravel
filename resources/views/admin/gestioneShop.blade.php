@@ -83,9 +83,36 @@
                                 class="btn btn-light">
                                 <iconify-icon icon="mdi:pencil"></iconify-icon> Modifica
                             </a>
-                            <a href="eliminaProdotto.php?id={{ $prodotto->id_prodotto }}" class="btn btn-danger">
-                                <iconify-icon icon="bi:trash-fill"></iconify-icon> Elimina
-                            </a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal{{ $prodotto->id_prodotto }}">
+                            <iconify-icon icon="bi:trash-fill"></iconify-icon>Elimina
+                        </div>
+
+                        <div class="modal fade" id="deleteModal{{ $prodotto->id_prodotto }}" tabindex="-1"
+                            aria-labelledby="deleteModalLabel{{ $prodotto->id_prodotto }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="deleteModalLabel{{ $prodotto->id_prodotto }}">
+                                            Eliminazione</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Sei sicuro di voler eliminare il prodotto {{ $prodotto->descrizione }}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annulla</button>
+                                        <form
+                                            action="{{ route('prodotti.destroy', ['prodotti' => $prodotto->id_prodotto]) }}"
+                                            method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Elimina</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach
