@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 @extends('layouts.master')
 
 @section('title', 'Admin - Gestione rose - FC Bedizzole')
@@ -71,7 +75,7 @@
                             <div class="row">
                                 <div class="col nome">{{ $giocatore->nome }}</div>
                                 <div class="col cognome">{{ $giocatore->cognome }}</div>
-                                <div class="col">{{ $giocatore->data_di_nascita }}</div>
+                                <div class="col">{{ Carbon::parse($giocatore->data_di_nascita)->format('d-m-Y') }}</div>
                                 <div class="col">{{ $giocatore->ruolo }}</div>
                                 <div class="col">
                                     <a href="{{ route('giocatori.edit', ['giocatori' => $giocatore->id_giocatore]) }}"

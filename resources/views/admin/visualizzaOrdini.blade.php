@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 @extends('layouts.master')
 
 @section('title', 'Admin - Visualizza ordini - FC Bedizzole')
@@ -57,7 +61,7 @@
                             {{ $ordine->utente->email }}
                         </div>
                         <div class="col">
-                            {{ $ordine->data_ordine }}
+                            {{ Carbon::parse($ordine->data_ordine)->format('d-m-Y')}}
                         </div>
                         <div class="col">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"

@@ -52,6 +52,8 @@ Route::middleware(['authControl'])->group(function(){
     Route::delete('/carrello/{id_dettaglio}', [CarrelloController::class, 'destroy'])->name('dettaglio.destroy');
     Route::post('/carrello', [OrdineController::class, 'checkout'])->name('carrello.checkout');
     Route::get('user/ordini', [OrdineController::class, 'ordineUtente'])->name('ordineUtente.index');
+    Route::post('/carrello', [CarrelloController::class, 'aggiungiAlCarrello'])->name('aggiungiAlCarrello');
+    Route::delete('/carrello/dettaglio/destroy/{dettaglio}', [CarrelloController::class, 'destroy'])->name('dettaglio.destroy');
     
 });
 

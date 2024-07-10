@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 @extends('layouts.master')
 
 @section('title', 'Admin - Gestione allenatori - FC Bedizzole')
@@ -65,7 +69,7 @@
                         {{ $allenatore->cognome }}
                     </div>
                     <div class="col">
-                        {{ $allenatore->data_di_nascita }}
+                        {{ Carbon::parse($allenatore->data_di_nascita)->format('d-m-Y') }}
                     </div>
                     <div class="col">
                         @foreach ($allenatore->squadre as $squadra)

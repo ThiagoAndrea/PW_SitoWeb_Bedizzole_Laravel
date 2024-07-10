@@ -72,9 +72,35 @@
                             {{ $prezziDettagli[$dettaglio->id_dettaglio] }} €
                         </div>
                         <div class="col">
-                            <a href="{{ route('dettaglio.destroy', ['id_dettaglio' => $dettaglio->id_dettaglio]) }}"
-                                class="btn btn-danger"><iconify-icon icon="bi:trash-fill"></iconify-icon> Rimuovi</a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal{{ $dettaglio->id_dettaglio }}">
+                                        <iconify-icon icon="bi:trash-fill"></iconify-icon>Rimuovi
                         </div>
+
+                        <div class="modal fade" id="deleteModal{{ $dettaglio->id_dettaglio }}" tabindex="-1"
+                    aria-labelledby="deleteModalLabel{{ $dettaglio->id_dettaglio }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="deleteModalLabel{{ $dettaglio->id_dettaglio }}">
+                                    Eliminazione</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Sei sicuro di voler rimouvere  {{ $dettaglio->prodotto->descrizione }} dal carrello?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annulla</button>
+                                <form action="{{ route('dettaglio.destroy', ['dettaglio' => $dettaglio->id_dettaglio]) }}"
+                                    method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Rimuovi</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     </div>
                 @endforeach
             </div>

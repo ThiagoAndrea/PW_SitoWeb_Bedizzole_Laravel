@@ -37,4 +37,10 @@ class CarrelloController extends Controller
         $dl->eliminaDettaglio($id_dettaglio);
         return redirect('carrello');
     }
+
+    public function aggiungiAlCarrello(Request $request){
+        $dl = new DataLayer();
+        $dl->aggiungiDettaglio($request);
+        return redirect('shop')->with('success', 'Prodotto aggiunto correttamente al carrello!');
+    }
 }

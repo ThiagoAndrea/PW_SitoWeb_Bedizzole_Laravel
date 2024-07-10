@@ -432,7 +432,8 @@ class DataLayer extends Model
 
     public function aggiungiDettaglio($request){
         $dettaglio = new Dettaglio;
-        $dettaglio->id_carrello = $request->id_carrello;
+        $id_carrello = Carrello::where('id_user', $request->id_user)->first()->id_carrello;
+        $dettaglio->id_carrello = $id_carrello;
         $dettaglio->id_prodotto = $request->id_prodotto;
         $dettaglio->quantita = $request->quantita;
         $dettaglio->id_taglia = $request->id_taglia;

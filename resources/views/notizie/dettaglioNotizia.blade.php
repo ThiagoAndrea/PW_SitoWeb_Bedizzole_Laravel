@@ -1,3 +1,8 @@
+@php
+    use Illuminate\Support\Str;
+    use Carbon\Carbon;
+    
+@endphp
 @extends('layouts.master')
 
 @section('titolo_head', 'Notizie - FC Bedizzole')
@@ -33,7 +38,7 @@
             <div class="col-md-8">
                 <img src="{{ asset('img/notizie/' . $notizia->foto) }}" class="img-thumbnail" style="width: 100%; height: auto; object-fit: cover;">
                 <p style="margin-top: 10px; font-size: 20px; text-align: justify;">{{$notizia->testo}}</p>
-                <span style="float: right; font-size: 20px;">{{$notizia->data}} <span class="uiw--date"></span></span>
+                <span style="float: right; font-size: 20px;">{{Carbon::parse($notizia->data)->format('d-m-Y')}} <span class="uiw--date"></span></span>
             </div>
         </div>
 
